@@ -164,16 +164,36 @@ public class Fraction : MonoBehaviour
 
     public virtual void MoveTopImageToCenter()
     {
-        TopImage.gameObject.SetActive(true);
         LeanTween.moveLocal(TopImage.gameObject, new Vector3(0, -30, 0), 0.4f);
         LeanTween.scale(TopImage.gameObject, new Vector3(1.6f, 1.6f, 1.6f), 0.4f);
+    }
+    public virtual void MoveTopImageToPanel()
+    {
+        LeanTween.moveLocal(TopImage.gameObject, new Vector3(0, 290, 0), 0.2f);
+        LeanTween.scale(TopImage.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.2f);
+    }
+
+    private IEnumerator Animation()
+    {
+        DarkController.Instance.MakeDark();
+        MoveTopImageToCenter();
+
+        yield return new WaitForSeconds(0.4f);
+
+        PanelController.Instance.MoveToCenter();
+
+        yield return new WaitForSeconds(1.2f);
+
+        DarkController.Instance.ResetDark();
+        MoveTopImageToPanel();
     }
 
     public void StartQuest()
     {
-        _image.Deselect();
-        MoveTopImageToCenter();
-        DarkController.Instance.MakeDark();
+        Deselect();
+        TopImage.gameObject.SetActive(true);
+
+        StartCoroutine(Animation());
 
         //_userMadeTurn = true;
         return;

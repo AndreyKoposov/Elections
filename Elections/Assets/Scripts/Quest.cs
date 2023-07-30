@@ -68,11 +68,11 @@ public class Quest
     private QuestINFO ReplaceRandomInserts(QuestINFO info)
     {
         string text = info._text;
-        /*text = text.Replace("_C_", DataContainer.RandomColonie);
+        text = text.Replace("_C_", DataContainer.RandomColonie);
         text = text.Replace("_N_", DataContainer.RandomName);
         text = text.Replace("_P_", DataContainer.RandomPlanet);
         text = text.Replace("_S_", DataContainer.RandomSystem);
-        text = text.Replace("_I_", DataContainer.RandomImperia);*/
+        text = text.Replace("_I_", DataContainer.RandomImperia);
         info._text = text;
         return info;
     }

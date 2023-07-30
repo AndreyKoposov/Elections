@@ -21,17 +21,17 @@ public class DarkController : MonoBehaviour
 
     void Start()
     {
-        LeanTween.color(rect, new Color(0, 0, 0, 0), 1f);
+        ResetDark();
     }
 
 
     public void MakeDark()
     {
-        LeanTween.color(rect, new Color(0, 0, 0, 255), 50f);
+        LeanTween.color(rect, new Color(0, 0, 0, 1f), 0.5f);
     }
 
     public void ResetDark()
     {
-        LeanTween.color(rect, new Color(0, 0, 0, 0), 1f);
+        LeanTween.color(rect, new Color(0, 0, 0, 0), 0.5f);
     }
 }
