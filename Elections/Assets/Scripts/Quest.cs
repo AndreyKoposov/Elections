@@ -31,7 +31,7 @@ public class Quest
     protected QuestINFO GetQuestInfoByFraction(Fractions fraction, TYPES TYPE)
     {
         QuestINFO info;
-        /*switch (fraction)
+        switch (fraction)
         {
             case Fractions.OLIGARCH:
                 info = GetRandomQuestInfo(Oligarch.Quests, TYPE);
@@ -47,8 +47,7 @@ public class Quest
                 return info;
             default:
                 return null;
-        }*/
-        return null;
+        }
     }
 
     protected QuestINFO GetRandomQuestInfo(List<QuestINFO> list, TYPES TYPE)

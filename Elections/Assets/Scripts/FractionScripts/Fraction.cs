@@ -15,8 +15,8 @@ public class Fraction : MonoBehaviour
 {
     public const int MAX_RATE = 100;
     public const int MIN_RATE = 0;
-    protected static List<QuestINFO> Quests = new List<QuestINFO>();
-    protected static FractionHelpINFO _info;
+    public static List<QuestINFO> Quests = new List<QuestINFO>();
+    public static FractionHelpINFO _info;
     public GameButton _quest;
     public GameButton _help;
     public SelectableIcon _background;
@@ -106,7 +106,7 @@ public class Fraction : MonoBehaviour
         StartCoroutine(Animation());
 
         //_userMadeTurn = true;
-        return;
+
         Random random = new Random();
         TYPES rType = (TYPES)random.Next(0, 6);
         Quest quest = null;
@@ -131,5 +131,6 @@ public class Fraction : MonoBehaviour
                 quest = new QType6(Type);
                 break;
         }
+        PanelController.Instance.SetText(quest._info._text);
     }
 }
