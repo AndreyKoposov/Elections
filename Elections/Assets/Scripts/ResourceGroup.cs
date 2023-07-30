@@ -16,6 +16,14 @@ public class ResourceGroup : MonoBehaviour
         InitResourcesGroup();
     }
 
+    public ResourceContainer this[ResTypes resource]
+    {
+        get
+        {
+            return resources[resource];
+        }
+    }
+
     public void InitResourcesGroup()
     {
         resources = new Dictionary<ResTypes, ResourceContainer>();

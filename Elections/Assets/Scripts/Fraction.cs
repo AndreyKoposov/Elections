@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
+using Random = System.Random;
 
 public enum Fractions
 {
@@ -12,10 +13,14 @@ public enum Fractions
 
 public class Fraction : MonoBehaviour
 {
+    public const int MAX_RATE = 100;
+    public const int MIN_RATE = 0;
     public GameButton _quest;
     public GameButton _help;
     public SelectableIcon _background;
     public SelectableIcon _image;
+    public Image TopImage;
+    public Rate rateBar;
 
     protected int _rate;
 
@@ -26,12 +31,22 @@ public class Fraction : MonoBehaviour
         {
             int buffer = _rate;
             _rate = value;
-            if (_rate > 100)
-                _rate = 100;
-            if (_rate < 0)
-                _rate = 0;
+            if (_rate > MAX_RATE)
+                _rate = MAX_RATE;
+            if (_rate < MIN_RATE)
+                _rate = MIN_RATE;
             int diff = value - buffer;
         }
+    }
+
+    public virtual Fractions Type
+    {
+        get;
+    }
+
+    private void Start()
+    {
+        _rate = 50;
     }
 
     public void Select()
@@ -145,5 +160,46 @@ public class Fraction : MonoBehaviour
     public static int CompareFraction(Fraction x, Fraction y)
     {
         return x.Rate.CompareTo(y.Rate);
+    }
+
+    public virtual void MoveTopImageToCenter()
+    {
+        TopImage.gameObject.SetActive(true);
+        LeanTween.moveLocal(TopImage.gameObject, new Vector3(0, -30, 0), 0.4f);
+        LeanTween.scale(TopImage.gameObject, new Vector3(1.6f, 1.6f, 1.6f), 0.4f);
+    }
+
+    public void StartQuest()
+    {
+        _image.Deselect();
+        MoveTopImageToCenter();
+        DarkController.Instance.MakeDark();
+
+        //_userMadeTurn = true;
+        return;
+        Random random = new Random();
+        TYPES rType = (TYPES)random.Next(0, 6);
+        Quest quest = null;
+        switch (rType)
+        {
+            case TYPES.TYPE1:
+                quest = new QType1(Type);
+                break;
+            case TYPES.TYPE2:
+                quest = new QType2(Type);
+                break;
+            case TYPES.TYPE3:
+                quest = new QType3(Type);
+                break;
+            case TYPES.TYPE4:
+                quest = new QType4(Type);
+                break;
+            case TYPES.TYPE5:
+                quest = new QType5(Type);
+                break;
+            case TYPES.TYPE6:
+                quest = new QType6(Type);
+                break;
+        }
     }
 }
