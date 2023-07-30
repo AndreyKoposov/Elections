@@ -44,7 +44,7 @@ public class Game
     public void InitAllData()
     {
         DataContainer.InitAllData();
-        /*Oligarch.InitQuests();
+        Oligarch.InitQuests();
         People.InitQuests();
         Mafia.InitQuests();
         Warrior.InitQuests();
@@ -52,6 +52,6 @@ public class Game
         Oligarch.InitHelpInfo();
         People.InitHelpInfo();
         Warrior.InitHelpInfo();
-        Logger.InitLogFile();*/
+        //Logger.InitLogFile();
     }
 }

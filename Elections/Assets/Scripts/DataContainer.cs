@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -95,6 +96,127 @@ public class DataContainer
             return dict;
         }
         return dict;
+    }
+
+    public static FractionHelpINFO ParseFileToInfoObj(string path)
+    {
+        List<string> linesForConstructor = new List<string>();
+        FractionHelpINFO info = new FractionHelpINFO("", "", "");
+        try
+        {
+            StreamReader reader = new StreamReader(PATH + path);
+            string line = reader.ReadLine();
+            while (line != null)
+            {
+                linesForConstructor.Add(line);
+                line = reader.ReadLine();
+            }
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Ошибка считывания файла: " + e.Message);
+        }
+
+        info = CreateFractionHelpINFO(linesForConstructor);
+        return info;
+    }
+
+    private static FractionHelpINFO CreateFractionHelpINFO(List<string> lines)
+    {
+        string text = lines[0];
+        string yes = lines[1];
+        string no = lines[2];
+
+        FractionHelpINFO info = new FractionHelpINFO(text, yes, no);
+        return info;
+    }
+
+    private static QuestINFO CreateQuestINFO(List<string> lines)
+    {
+        string text = lines[0];
+        string yes = lines[1];
+        string no = lines[2];
+        List<Fractions> fractions = new List<Fractions>();
+        List<ResTypes> resources = new List<ResTypes>();
+
+        if (!isNoneLine(lines[3]))
+        {
+            ParseFractionsLineToList(lines[3], fractions);
+        }
+
+        if (!isNoneLine(lines[4]))
+        {
+            ParseResourcesLineToList(lines[4], resources);
+        }
+
+        TYPES type = (TYPES)Int32.Parse(lines[5]);
+
+        QuestINFO info = new QuestINFO(text, yes, no, type, fractions, resources);
+        return info;
+    }
+
+    public static void ReadQuestsFileToList(string path, List<QuestINFO> quests)
+    {
+        List<string> linesForConstructor = new List<string>();
+        try
+        {
+            StreamReader reader = new StreamReader(PATH + path);
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                if (line.Equals("END"))
+                {
+                    QuestINFO info = CreateQuestINFO(linesForConstructor);
+                    quests.Add(info);
+                    linesForConstructor.Clear();
+                }
+                else
+                {
+                    linesForConstructor.Add(line);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Ошибка считывания файла: " + e.Message);
+        }
+    }
+
+    private static void ParseResourcesLineToList(string line, List<ResTypes> list)
+    {
+        string[] resourcesWords = line.Split(' ');
+        for (int i = 0; i < resourcesWords.Length; i++)
+        {
+            ResTypes res = ParseResources(resourcesWords[i]);
+            list.Add(res);
+        }
+    }
+
+    public static Fractions ParseFractions(string text)
+    {
+        Fractions fraction = (Fractions)Int32.Parse(text);
+        return fraction;
+    }
+
+    public static ResTypes ParseResources(string text)
+    {
+        ResTypes res = (ResTypes)Int32.Parse(text);
+        return res;
+    }
+
+    private static bool isNoneLine(string line)
+    {
+        return line.Equals("NONE");
+    }
+
+    private static void ParseFractionsLineToList(string line, List<Fractions> list)
+    {
+        string[] fractionsWords = line.Split(' ');
+        for (int i = 0; i < fractionsWords.Length; i++)
+        {
+            Fractions fraction = ParseFractions(fractionsWords[i]);
+            list.Add(fraction);
+        }
     }
 
     public static string RandomSystem
