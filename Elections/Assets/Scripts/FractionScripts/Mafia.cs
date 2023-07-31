@@ -7,6 +7,8 @@ public class Mafia : Fraction
     private const Fractions TYPE = Fractions.MAFIA;
     private const string PATH = "Quests/mafia.txt";
     private const string PATH_TO_HELP_FILE = "Quests/mafia_help.txt";
+    public static List<QuestINFO> Quests = new List<QuestINFO>();
+    public static FractionHelpINFO _info;
 
     public override Fractions Type
     {

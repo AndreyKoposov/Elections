@@ -8,6 +8,8 @@ public class People : Fraction
     private const Fractions TYPE = Fractions.PEOPLE;
     private const string PATH = "Quests/people.txt";
     private const string PATH_TO_HELP_FILE = "Quests/people_help.txt";
+    public static List<QuestINFO> Quests = new List<QuestINFO>();
+    public static FractionHelpINFO _info;
 
 
     public override Fractions Type

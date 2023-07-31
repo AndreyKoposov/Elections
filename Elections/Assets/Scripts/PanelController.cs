@@ -8,9 +8,9 @@ public class PanelController : MonoBehaviour
 {
     private static PanelController instance;
     public TextMeshProUGUI _text;
-    public GameButton _leftButton;
-    public GameButton _rightButton;
-    public GameButton _centerButton;
+    public TextMeshProUGUI _leftButtonText;
+    public TextMeshProUGUI _rightButtonText;
+    public TextMeshProUGUI _centerButtonText;
     private ActionPerform _performRight;
     private ActionPerform _performLeft;
     [SerializeField] private ResourceGroup _resGroup;
@@ -28,12 +28,12 @@ public class PanelController : MonoBehaviour
     
     public ActionPerform Right
     {
-        set { _performLeft = value; }
+        set { _performRight = value; }
     }
 
     public ActionPerform Left
     {
-        set { _performRight = value; }
+        set { _performLeft = value; }
     }
 
     public void MoveToCenter()
@@ -49,6 +49,21 @@ public class PanelController : MonoBehaviour
     public void SetText(string text)
     {
         _text.text = text;
+    }
+
+    public void SetRightButtonText(string text)
+    {
+        _rightButtonText.text = text;
+    }
+
+    public void SetLeftButtonText(string text)
+    {
+        _leftButtonText.text = text;
+    }
+
+    public void SetCenterButtonText(string text)
+    {
+        _centerButtonText.text = text;
     }
 
     public void RightClick()

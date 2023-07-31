@@ -9,6 +9,8 @@ public class Oligarch : Fraction
     private const Fractions TYPE = Fractions.OLIGARCH;
     private const string PATH = "Quests/oligarch.txt";
     private const string PATH_TO_HELP_FILE = "Quests/oligarch_help.txt";
+    public static List<QuestINFO> Quests = new List<QuestINFO>();
+    public static FractionHelpINFO _info;
 
 
     public override Fractions Type

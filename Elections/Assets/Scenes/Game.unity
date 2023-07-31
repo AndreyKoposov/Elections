@@ -933,7 +933,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 247151496}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 986443657}
+        m_TargetAssemblyTypeName: PanelController, Assembly-CSharp
+        m_MethodName: LeftClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &247151496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1664,7 +1676,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 413361068}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 986443657}
+        m_TargetAssemblyTypeName: PanelController, Assembly-CSharp
+        m_MethodName: RightClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &413361068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,8 +1823,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2999,7 +3023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &636134687
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4826,9 +4850,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 457556164}
-  _leftButton: {fileID: 247151498}
-  _rightButton: {fileID: 413361070}
-  _centerButton: {fileID: 636134691}
+  _leftButtonText: {fileID: 1790907755}
+  _rightButtonText: {fileID: 987978780}
+  _centerButtonText: {fileID: 1637663932}
   _resGroup: {fileID: 1256565158}
   _fractionGroup: {fileID: 271141061}
 --- !u!1 &987228539

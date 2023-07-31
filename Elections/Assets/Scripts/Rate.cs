@@ -16,7 +16,6 @@ public class Rate : MonoBehaviour
 
     private void Update()
     {
-        SetRate(startRate);
         lerpSpeed = 3f * Time.deltaTime;
     }
 
