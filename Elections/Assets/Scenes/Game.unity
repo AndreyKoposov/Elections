@@ -1093,7 +1093,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 247917609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1690514614}
+        m_TargetAssemblyTypeName: Fraction, Assembly-CSharp
+        m_MethodName: StartHelp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &247917609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2660,7 +2672,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 565854968}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679678871}
+        m_TargetAssemblyTypeName: Fraction, Assembly-CSharp
+        m_MethodName: StartHelp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &565854968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2733,7 +2757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105.92998, y: 0}
+  m_AnchoredPosition: {x: 155.93, y: 0}
   m_SizeDelta: {x: 131.86, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568591103
@@ -4329,7 +4353,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908410397}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 287830765}
+        m_TargetAssemblyTypeName: Fraction, Assembly-CSharp
+        m_MethodName: StartHelp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &908410397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5661,7 +5697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.13429166}
   m_AnchorMax: {x: 0.16664582, y: 0.8895417}
-  m_AnchoredPosition: {x: -69, y: -11.5}
+  m_AnchoredPosition: {x: -59, y: -11.5}
   m_SizeDelta: {x: -220, y: -625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1256565158
@@ -6170,7 +6206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1382473749}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 869862643}
+        m_TargetAssemblyTypeName: Fraction, Assembly-CSharp
+        m_MethodName: StartHelp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1382473749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7027,7 +7075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105.92998, y: 0}
+  m_AnchoredPosition: {x: 155.93, y: 0}
   m_SizeDelta: {x: 131.86, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1552915033
@@ -7796,7 +7844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105.92998, y: 0}
+  m_AnchoredPosition: {x: 155.93, y: 0}
   m_SizeDelta: {x: 131.86, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762894174
@@ -8364,7 +8412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105.92998, y: 0}
+  m_AnchoredPosition: {x: 155.93, y: 0}
   m_SizeDelta: {x: 131.86, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988783673

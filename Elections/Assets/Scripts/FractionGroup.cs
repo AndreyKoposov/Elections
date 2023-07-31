@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FractionGroup : MonoBehaviour
 {
-    private Dictionary<Fractions, Fraction> fractions;
+    private static Dictionary<Fractions, Fraction> fractions;
 
     private void Awake()
     {
@@ -14,6 +14,11 @@ public class FractionGroup : MonoBehaviour
         {
             fractions.Add(f.Type, f);
         }
+    }
+
+    public static Dictionary<Fractions, Fraction> Group
+    {
+        get { return fractions; }
     }
 
     void Start()
@@ -37,7 +42,7 @@ public class FractionGroup : MonoBehaviour
         }
     }
 
-    public Fraction GetLowestRateFractionExceptOne(Fractions whichQuestFraction)
+    public static Fraction GetLowestRateFractionExceptOne(Fractions whichQuestFraction)
     {
         List<Fraction> rates = FractionsRatesToList();
         List<Fraction> sortRates = SortFractionList(rates);
@@ -49,15 +54,61 @@ public class FractionGroup : MonoBehaviour
         return sortRates[0];
     }
 
-    private List<Fraction> FractionsRatesToList()
+    private static List<Fraction> FractionsRatesToList()
     {
         List<Fraction> rates = new List<Fraction>(fractions.Values);
         return rates;
     }
 
-    private List<Fraction> SortFractionList(List<Fraction> rates)
+    private static List<Fraction> SortFractionList(List<Fraction> rates)
     {
         rates.Sort(Fraction.CompareFraction);
         return rates;
+    }
+
+    public static int CountVotes()
+    {
+        int sumOfVotes = fractions[Fractions.OLIGARCH].Vote
+            + fractions[Fractions.PEOPLE].Vote
+            + fractions[Fractions.WARRIOR].Vote
+            + fractions[Fractions.MAFIA].Vote;
+        return sumOfVotes;
+    }
+
+    public static void SetAppendValues(Dictionary<ResTypes, int> valuePerTurn)
+    {
+        foreach(Fraction fraction in fractions.Values)
+        {
+            SetResAppendByFraction(fraction, valuePerTurn);
+        }
+    }
+
+    private static void SetResAppendByFraction(Fraction fraction, Dictionary<ResTypes, int> valuePerTurn)
+    {
+        if (fraction.Rate >= 75)
+        {
+            valuePerTurn[fraction.TypeRes] = 3;
+            return;
+        }
+        if (fraction.Rate <= 25)
+        {
+            valuePerTurn[fraction.TypeRes] = -6;
+        }
+        else
+        {
+            valuePerTurn[fraction.TypeRes] = 0;
+        }
+    }
+
+    public static void OffInteractive(Fractions? fraction)
+    {
+        if (fraction == null)
+            return;
+        Fractions frac = (Fractions)fraction;
+        foreach (Fraction f in fractions.Values)
+        {
+            f.OnInteractive();
+        }
+        fractions[frac].OffInteractive();
     }
 }

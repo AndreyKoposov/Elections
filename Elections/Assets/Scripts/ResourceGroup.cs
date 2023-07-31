@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public enum ResTypes
 {
@@ -9,7 +10,7 @@ public enum ResTypes
 
 public class ResourceGroup : MonoBehaviour
 {
-    private Dictionary<ResTypes, ResourceContainer> resources;
+    private static Dictionary<ResTypes, ResourceContainer> resources;
 
     private void Awake()
     {
@@ -22,6 +23,11 @@ public class ResourceGroup : MonoBehaviour
         {
             return resources[resource];
         }
+    }
+
+    public static Dictionary<ResTypes, ResourceContainer> Group
+    {
+        get { return resources; }
     }
 
     public void InitResourcesGroup()
@@ -43,7 +49,7 @@ public class ResourceGroup : MonoBehaviour
         }
     }
 
-    public ResourceContainer GetLowestValueResourceExceptOne(ResTypes resource)
+    public static ResourceContainer GetLowestValueResourceExceptOne(ResTypes resource)
     {
         List<ResourceContainer> values = ResourceToList();
         List<ResourceContainer> sortValues = SortResourceList(values);
@@ -55,15 +61,52 @@ public class ResourceGroup : MonoBehaviour
         return sortValues[0];
     }
 
-    private List<ResourceContainer> ResourceToList()
+    private static List<ResourceContainer> ResourceToList()
     {
         List<ResourceContainer> values = new List<ResourceContainer>(resources.Values);
         return values;
     }
 
-    private List<ResourceContainer> SortResourceList(List<ResourceContainer> values)
+    private static List<ResourceContainer> SortResourceList(List<ResourceContainer> values)
     {
         values.Sort(ResourceContainer.CompareResource);
         return values;
+    }
+
+    public static GameOverINFO GetGameOverInfo()
+    {
+        if (resources[ResTypes.MONEY].Value <= 0)
+        {
+            return new GameOverINFO(ResTypes.MONEY);
+        }
+        if (resources[ResTypes.FOOD].Value <= 0)
+        {
+            return new GameOverINFO(ResTypes.FOOD);
+        }
+        if (resources[ResTypes.POWER].Value <= 0)
+        {
+            return new GameOverINFO(ResTypes.POWER);
+        }
+        if (resources[ResTypes.METAL].Value <= 0)
+        {
+            return new GameOverINFO(ResTypes.METAL);
+        }
+        return null;
+    }
+
+    public static void AppendValuesToResources(Dictionary<ResTypes, int> valuePerTurn)
+    {
+        resources[ResTypes.METAL].Value += valuePerTurn[ResTypes.METAL];
+        resources[ResTypes.MONEY].Value += valuePerTurn[ResTypes.MONEY];
+        resources[ResTypes.POWER].Value += valuePerTurn[ResTypes.POWER];
+        resources[ResTypes.FOOD].Value += valuePerTurn[ResTypes.FOOD];
+    }
+
+    public static void DecreaseRandomResource(int value)
+    {
+        Random random = new Random();
+
+        ResTypes resType = (ResTypes)random.Next(0, 4);
+        resources[resType].Value -= value;
     }
 }

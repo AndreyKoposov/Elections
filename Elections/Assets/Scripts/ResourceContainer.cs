@@ -45,6 +45,22 @@ public class ResourceContainer : MonoBehaviour
                 yield return new WaitForSeconds(0.03f);
             }
         }
+        SetCountColor();
+    }
+
+    private void SetCountColor()
+    {
+        if (_value <= 25)
+        {
+            _count.color = Color.red;
+            return;
+        }
+        if (_value >= 75)
+        {
+            _count.color = Color.green;
+            return;
+        }
+        _count.color = Color.white;
     }
 
     public ResTypes Type

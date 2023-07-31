@@ -19,6 +19,7 @@ public class Fraction : MonoBehaviour
     public GameButton _help;
     public SelectableIcon _background;
     public SelectableIcon _image;
+    private Button _imageButton;
     public MoveableImage TopImage;
     public Rate rateBar;
 
@@ -40,9 +41,30 @@ public class Fraction : MonoBehaviour
         }
     }
 
+    public int Vote
+    {
+        get
+        {
+            if (_rate <= 25)
+                return -1;
+            if (_rate >= 75)
+                return 1;
+            else
+                return 0;
+        }
+    }
     public virtual Fractions Type
     {
         get;
+    }
+    public virtual ResTypes TypeRes
+    {
+        get;
+    }
+
+    private void Awake()
+    {
+        _imageButton = _image.gameObject.GetComponent<Button>();
     }
 
     private void Start()
@@ -101,43 +123,96 @@ public class Fraction : MonoBehaviour
     public void StartQuest()
     {
         Deselect();
-        TopImage.gameObject.SetActive(true);
-        PanelController.Instance.InfoIamge = TopImage;
-
+        SetupTopImage();
         StartCoroutine(Animation());
 
-        //_userMadeTurn = true;
+        GameController.Game.UserMadeTurn = true;
+        GameController.Game.WhoWasAsked = Type;
 
+        Quest quest = GetRandomQuest();
+
+        PanelController panel = PanelController.Instance;
+        SetUpPanel(panel, quest);
+    }
+
+    private void SetupTopImage()
+    {
+        TopImage.gameObject.SetActive(true);
+        PanelController.Instance.InfoIamge = TopImage;
+    }
+
+    private Quest GetRandomQuest()
+    {
         Random random = new Random();
         TYPES rType = (TYPES)random.Next(0, 6);
-        Quest quest = null;
         switch (rType)
         {
             case TYPES.TYPE1:
-                quest = new QType1(Type);
-                break;
+                return new QType1(Type);
             case TYPES.TYPE2:
-                quest = new QType2(Type);
-                break;
+                return new QType2(Type);
             case TYPES.TYPE3:
-                quest = new QType3(Type);
-                break;
+                return new QType3(Type);
             case TYPES.TYPE4:
-                quest = new QType4(Type);
-                break;
+                return new QType4(Type);
             case TYPES.TYPE5:
-                quest = new QType5(Type);
-                break;
+                return new QType5(Type);
             case TYPES.TYPE6:
-                quest = new QType6(Type);
-                break;
+                return new QType6(Type);
+            default:
+                return new QType1(Type);
         }
+    }
+
+    public void StartHelp()
+    {
+        Deselect();
+        SetupTopImage();
+        StartCoroutine(Animation());
+
+        GameController.Game.UserMadeTurn = true;
+        GameController.Game.WhoWasAsked = Type;
+
+        FractionHelp help = FractionGroup.Group[Type].GetHelp();
+
+        Fractions lowRateFraction = FractionGroup.GetLowestRateFractionExceptOne(help._whichHelp.Type).Type;
+        ResTypes lowValueResource = ResourceGroup.GetLowestValueResourceExceptOne(help._whichHelp.TypeRes).Type;
+        help.InsertInTextFractionName(lowRateFraction);
+        help.InsertInTexResourceName(lowValueResource);
 
         PanelController panel = PanelController.Instance;
+        SetUpPanel(panel, help);
+    }
+
+    private void SetUpPanel(PanelController panel, Quest quest)
+    {
         panel.SetText(quest._info._text);
         panel.SetLeftButtonText(quest._info._yesAnswer);
         panel.SetRightButtonText(quest._info._noAnswer);
         panel.Left = quest._taskAcception;
         panel.Right = quest._taskDeviation;
+    }
+
+    private void SetUpPanel(PanelController panel, FractionHelp help)
+    {
+        panel.SetText(help._info._text);
+        panel.SetLeftButtonText(help._info._yesAnswer);
+        panel.SetRightButtonText(help._info._noAnswer);
+        panel.Left = help._leftChoose;
+        panel.Right = help._rightChoose;
+    }
+
+    protected virtual FractionHelp GetHelp()
+    {
+        return null;
+    }
+
+    public void OnInteractive()
+    {
+        _imageButton.interactable = true;
+    }
+    public void OffInteractive()
+    {
+        _imageButton.interactable = false;
     }
 }

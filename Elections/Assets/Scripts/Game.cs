@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class Game
 {
@@ -9,7 +10,6 @@ public class Game
     private const int VALUE_TO_DECREASE = 6;
 
     private int _currentTurn;
-    private TurnINFO _info;
     private bool _userMadeTurn;
     private bool _gameOver;
     private ElectionINFO _electionInfo;
@@ -20,7 +20,6 @@ public class Game
     public Game()
     {
         _currentTurn = 1;
-        _info = new TurnINFO(_currentTurn);
         _userMadeTurn = false;
         _whoWasAskeed = null;
         _gameOver = false;
@@ -29,6 +28,54 @@ public class Game
         _valuePerTurn = InitDictOfValues();
 
         InitAllData();
+    }
+
+    public bool UserMadeTurn
+    {
+        get { return _userMadeTurn; }
+        set { _userMadeTurn = value; }
+    }
+
+    public ElectionINFO ElectionInfo
+    {
+        get { return _electionInfo; }
+    }
+
+    public GameOverINFO GameOverInfo
+    {
+        get { return _gameOverInfo; }
+    }
+
+    public Fractions? WhoWasAsked
+    {
+        get { return _whoWasAskeed; }
+        set { _whoWasAskeed = value; }
+    }
+
+    public int MoneyChange
+    {
+        get { return _valuePerTurn[ResTypes.MONEY]; }
+    }
+    public int FoodChange
+    {
+        get { return _valuePerTurn[ResTypes.FOOD]; }
+    }
+    public int MetalChange
+    {
+        get { return _valuePerTurn[ResTypes.METAL]; }
+    }
+    public int PowerChange
+    {
+        get { return _valuePerTurn[ResTypes.POWER]; }
+    }
+    public string StartText
+    {
+        get { return DataContainer.StartText; }
+    }
+
+    public string LearnText
+    {
+        get { return DataContainer.LearnText; }
     }
 
     private Dictionary<ResTypes, int> InitDictOfValues()
@@ -53,5 +100,53 @@ public class Game
         People.InitHelpInfo();
         Warrior.InitHelpInfo();
         //Logger.InitLogFile();
+    }
+
+    public void NextTurn()
+    {
+        if (TryInitGameOverInfo())
+        {
+            _gameOver = true;
+            return;
+        }
+
+        if (isTurnOfElections() && !_gameOver)
+        {
+            _gameOver = !isUserWinElections();
+            _electionInfo = new ElectionINFO(FractionGroup.Group, _gameOver);
+        }
+        else
+        {
+            _electionInfo = new ElectionINFO();
+        }
+
+        _currentTurn++;
+        _userMadeTurn = false;
+
+        FractionGroup.SetAppendValues(_valuePerTurn);
+        ResourceGroup.DecreaseRandomResource(VALUE_TO_DECREASE);
+        ResourceGroup.AppendValuesToResources(_valuePerTurn);
+        FractionGroup.OffInteractive(_whoWasAskeed);
+
+        //SaveGame(this);
+    }
+
+    private bool TryInitGameOverInfo()
+    {
+        _gameOverInfo = ResourceGroup.GetGameOverInfo();
+        if (_gameOverInfo == null)
+            return false;
+        return true;
+    }
+    private bool isTurnOfElections()
+    {
+        return _currentTurn % 10 == 0;
+    }
+
+    private bool isUserWinElections()
+    {
+        if (FractionGroup.CountVotes() < 0)
+            return false;
+        return true;
     }
 }
