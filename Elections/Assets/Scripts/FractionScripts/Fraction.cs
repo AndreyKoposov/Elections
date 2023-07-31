@@ -36,8 +36,7 @@ public class Fraction : MonoBehaviour
             if (_rate < MIN_RATE)
                 _rate = MIN_RATE;
             int diff = value - buffer;
-            rateBar.SetRate(0);
-            Debug.Log("Change Rate " + Type + _rate);
+            rateBar.SetRate(_rate);
         }
     }
 

@@ -16,11 +16,13 @@ public class Rate : MonoBehaviour
 
     private void Update()
     {
+        SetRate(startRate);
         lerpSpeed = 3f * Time.deltaTime;
     }
 
     public void SetRate(float rate)
     {
+        startRate = rate;
         rateBar.fillAmount = Mathf.Lerp(rateBar.fillAmount, rate / Fraction.MAX_RATE, lerpSpeed);
     }
 }
