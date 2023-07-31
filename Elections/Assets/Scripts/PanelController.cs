@@ -11,10 +11,14 @@ public class PanelController : MonoBehaviour
     public TextMeshProUGUI _leftButtonText;
     public TextMeshProUGUI _rightButtonText;
     public TextMeshProUGUI _centerButtonText;
+    public GameButton _rightButton;
+    public GameButton _leftButton;
+    public GameButton _centerButton;
     private ActionPerform _performRight;
     private ActionPerform _performLeft;
     [SerializeField] private ResourceGroup _resGroup;
     [SerializeField] private FractionGroup _fractionGroup;
+    private MoveableImage _infoIamge;
 
     public static PanelController Instance
     {
@@ -36,6 +40,11 @@ public class PanelController : MonoBehaviour
         set { _performLeft = value; }
     }
 
+    public MoveableImage InfoIamge
+    {
+        set { _infoIamge = value; }
+    }
+
     public void MoveToCenter()
     {
         LeanTween.moveLocalX(gameObject, 30f, 0.3f);
@@ -43,7 +52,17 @@ public class PanelController : MonoBehaviour
 
     public void RemoveFromCenter()
     {
+        StartCoroutine(Animation());
+    }
+
+    private IEnumerator Animation()
+    {
         LeanTween.moveLocalX(gameObject, 1740f, 0.3f);
+        LeanTween.moveLocalX(_infoIamge.gameObject, 1740f, 0.3f);
+
+        yield return new WaitForSeconds(0.3f);
+
+        _infoIamge.ResetImage();
     }
 
     public void SetText(string text)
@@ -76,5 +95,19 @@ public class PanelController : MonoBehaviour
     {
         _performLeft(_fractionGroup, _resGroup);
         RemoveFromCenter();
+    }
+
+    public void SetChooseMode()
+    {
+        _rightButton.gameObject.SetActive(true);
+        _leftButton.gameObject.SetActive(true);
+        _centerButton.gameObject.SetActive(false);
+    }
+
+    public void SetDefaultMode()
+    {
+        _rightButton.gameObject.SetActive(false);
+        _leftButton.gameObject.SetActive(false);
+        _centerButton.gameObject.SetActive(true);
     }
 }

@@ -19,7 +19,7 @@ public class Fraction : MonoBehaviour
     public GameButton _help;
     public SelectableIcon _background;
     public SelectableIcon _image;
-    public Image TopImage;
+    public MoveableImage TopImage;
     public Rate rateBar;
 
     protected int _rate;
@@ -89,6 +89,7 @@ public class Fraction : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
+        PanelController.Instance.SetChooseMode();
         PanelController.Instance.MoveToCenter();
 
         yield return new WaitForSeconds(0.5f);
@@ -101,6 +102,7 @@ public class Fraction : MonoBehaviour
     {
         Deselect();
         TopImage.gameObject.SetActive(true);
+        PanelController.Instance.InfoIamge = TopImage;
 
         StartCoroutine(Animation());
 
