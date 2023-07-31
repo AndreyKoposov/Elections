@@ -89,12 +89,14 @@ public class PanelController : MonoBehaviour
     {
         _performRight(_fractionGroup, _resGroup);
         RemoveFromCenter();
+        GameController.Game.NextTurn();
     }
 
     public void LeftClick()
     {
         _performLeft(_fractionGroup, _resGroup);
         RemoveFromCenter();
+        GameController.Game.NextTurn();
     }
 
     public void SetChooseMode()

@@ -209,10 +209,12 @@ public class Fraction : MonoBehaviour
 
     public void OnInteractive()
     {
-        _imageButton.interactable = true;
+        _imageButton.enabled = true;
+        Debug.Log("On " + Type);
     }
     public void OffInteractive()
     {
-        _imageButton.interactable = false;
+        _imageButton.enabled = false;
+        Debug.Log("Off " + Type);
     }
 }
