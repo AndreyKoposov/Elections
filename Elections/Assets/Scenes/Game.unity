@@ -1236,6 +1236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value: 50
   _type: 1
+  _count: {fileID: 1988783673}
 --- !u!1 &287830763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2886,6 +2887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value: 50
   _type: 2
+  _count: {fileID: 568591103}
 --- !u!1 &582326578
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,19 +3089,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 636134689}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 986443657}
-        m_TargetAssemblyTypeName: PanelController, Assembly-CSharp
-        m_MethodName: RemoveFromCenter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &636134689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5707,6 +5697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value: 50
   _type: 3
+  _count: {fileID: 1552915033}
 --- !u!1 &1311909315
 GameObject:
   m_ObjectHideFlags: 0
@@ -7502,6 +7493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value: 50
   _type: 0
+  _count: {fileID: 1762894174}
 --- !u!1 &1715861254
 GameObject:
   m_ObjectHideFlags: 0
