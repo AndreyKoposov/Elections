@@ -26,6 +26,7 @@ public class ResourceContainer : MonoBehaviour
                 _value = 0;
             int diff = _value - buffer;
             StartCoroutine(SetValueToCount(_value, buffer));
+            SetCountColor();
         }
     }
 
@@ -51,7 +52,6 @@ public class ResourceContainer : MonoBehaviour
                 yield return new WaitForSeconds(0.03f);
             }
         }
-        SetCountColor();
     }
 
     private void SetCountColor()

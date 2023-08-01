@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PanelController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PanelController : MonoBehaviour
     public GameButton _centerButton;
     private ActionPerform _performRight;
     private ActionPerform _performLeft;
+    private CenterButtonAction _performCenterButton;
     [SerializeField] private ResourceGroup _resGroup;
     [SerializeField] private FractionGroup _fractionGroup;
     private MoveableImage _fractionImage;
@@ -33,6 +35,7 @@ public class PanelController : MonoBehaviour
         instance = this;
         _animator = _infoImage.GetComponent<Animator>();
         HidePanelImage();
+        _performCenterButton = () => { };
     }
     
     public ActionPerform Right
@@ -110,6 +113,16 @@ public class PanelController : MonoBehaviour
         }
     }
 
+    public void CenterClick()
+    {
+        RemoveFromCenter();
+        if (!infoMode)
+        {
+            EndTurn(0.3f);
+        }
+        _performCenterButton();
+    }
+
     public void SetChooseMode()
     {
         _rightButton.gameObject.SetActive(true);
@@ -162,6 +175,7 @@ public class PanelController : MonoBehaviour
         Instance.SetText(over._text);
         Instance.SetCenterButtonText(over._answer);
         Instance.SetPanelImage((int)over._reason + 1);
+        Instance._performCenterButton = over._ButtonClick;
     }
 
 
@@ -186,5 +200,18 @@ public class PanelController : MonoBehaviour
     {
         _infoImage.SetActive(false);
         Instance._animator.SetInteger("type", 0);
+    }
+
+    public void EndGame()
+    {
+        StartCoroutine(Courutine());
+    }
+
+    private IEnumerator Courutine()
+    {
+        Instance.RemoveFromCenter();
+        DarkController.Instance.MakeDark();
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(0);
     }
 }

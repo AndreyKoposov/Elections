@@ -22,6 +22,8 @@ public class Fraction : MonoBehaviour
     private Button _imageButton;
     public MoveableImage TopImage;
     public Rate rateBar;
+    public Image redFlag;
+    public Image greenFlag;
 
     protected int _rate;
 
@@ -38,6 +40,7 @@ public class Fraction : MonoBehaviour
                 _rate = MIN_RATE;
             int diff = value - buffer;
             rateBar.SetRate(_rate);
+            SetFlag();
         }
     }
 
@@ -65,6 +68,21 @@ public class Fraction : MonoBehaviour
     private void Awake()
     {
         _imageButton = _image.gameObject.GetComponent<Button>();
+    }
+
+    private void SetFlag()
+    {
+        if (Rate <= 25)
+        {
+            SetRedFlag();
+            return;
+        }
+        if (Rate >= 75)
+        {
+            SetGreenFlag();
+            return;
+        }
+        ResetFlags();
     }
 
     private void Start()
@@ -201,5 +219,20 @@ public class Fraction : MonoBehaviour
     public void OffInteractive()
     {
         _imageButton.enabled = false;
+    }
+    private void SetGreenFlag()
+    {
+        greenFlag.gameObject.SetActive(true);
+    }
+
+    private void SetRedFlag()
+    {
+        redFlag.gameObject.SetActive(true);
+    }
+
+    private void ResetFlags()
+    {
+        greenFlag.gameObject.SetActive(false);
+        redFlag.gameObject.SetActive(false); ;
     }
 }
