@@ -96,10 +96,26 @@ public class ResourceGroup : MonoBehaviour
 
     public static void AppendValuesToResources(Dictionary<ResTypes, int> valuePerTurn)
     {
-        resources[ResTypes.METAL].Value += valuePerTurn[ResTypes.METAL];
-        resources[ResTypes.MONEY].Value += valuePerTurn[ResTypes.MONEY];
-        resources[ResTypes.POWER].Value += valuePerTurn[ResTypes.POWER];
-        resources[ResTypes.FOOD].Value += valuePerTurn[ResTypes.FOOD];
+        foreach(ResTypes type in resources.Keys)
+        {
+            ResourceContainer res = resources[type];
+            int ValuePerTurn = valuePerTurn[type];
+
+            res.Value += ValuePerTurn;
+
+            if(ValuePerTurn < 0)
+            {
+                res.SetRedArrow();
+            }
+            if (ValuePerTurn > 0)
+            {
+                res.SetGreenArrow();
+            }
+            if (ValuePerTurn == 0)
+            {
+                res.ResetArrows();
+            }
+        }
     }
 
     public static void DecreaseRandomResource(int value)

@@ -18,7 +18,9 @@ public class PanelController : MonoBehaviour
     private ActionPerform _performLeft;
     [SerializeField] private ResourceGroup _resGroup;
     [SerializeField] private FractionGroup _fractionGroup;
-    private MoveableImage _infoIamge;
+    private MoveableImage _fractionImage;
+    [SerializeField] private GameObject _infoImage;
+    private Animator _animator; 
     private bool infoMode = true;
 
     public static PanelController Instance
@@ -29,6 +31,8 @@ public class PanelController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        _animator = _infoImage.GetComponent<Animator>();
+        HidePanelImage();
     }
     
     public ActionPerform Right
@@ -43,7 +47,7 @@ public class PanelController : MonoBehaviour
 
     public MoveableImage InfoIamge
     {
-        set { _infoIamge = value; }
+        set { _fractionImage = value; }
     }
 
     public void MoveToCenter()
@@ -59,11 +63,11 @@ public class PanelController : MonoBehaviour
     private IEnumerator Animation()
     {
         LeanTween.moveLocalX(gameObject, 1740f, 0.3f);
-        LeanTween.moveLocalX(_infoIamge.gameObject, 1740f, 0.3f);
+        LeanTween.moveLocalX(_fractionImage.gameObject, 1740f, 0.3f);
 
         yield return new WaitForSeconds(0.3f);
 
-        _infoIamge.ResetImage();
+        _fractionImage.ResetImage();
     }
 
     public void SetText(string text)
@@ -132,34 +136,32 @@ public class PanelController : MonoBehaviour
 
     public static void SetUpPanel(Quest quest)
     {
-        PanelController panel = Instance;
-        panel.SetGameMode();
-        panel.SetChooseMode();
-        panel.SetText(quest._info._text);
-        panel.SetLeftButtonText(quest._info._yesAnswer);
-        panel.SetRightButtonText(quest._info._noAnswer);
-        panel.Left = quest._taskAcception;
-        panel.Right = quest._taskDeviation;
+        Instance.SetGameMode();
+        Instance.SetChooseMode();
+        Instance.SetText(quest._info._text);
+        Instance.SetLeftButtonText(quest._info._yesAnswer);
+        Instance.SetRightButtonText(quest._info._noAnswer);
+        Instance.Left = quest._taskAcception;
+        Instance.Right = quest._taskDeviation;
     }
 
     public static void SetUpPanel(FractionHelp help)
     {
-        PanelController panel = Instance;
-        panel.SetGameMode();
-        panel.SetChooseMode();
-        panel.SetText(help._info._text);
-        panel.SetLeftButtonText(help._info._yesAnswer);
-        panel.SetRightButtonText(help._info._noAnswer);
-        panel.Left = help._leftChoose;
-        panel.Right = help._rightChoose;
+        Instance.SetGameMode();
+        Instance.SetChooseMode();
+        Instance.SetText(help._info._text);
+        Instance.SetLeftButtonText(help._info._yesAnswer);
+        Instance.SetRightButtonText(help._info._noAnswer);
+        Instance.Left = help._leftChoose;
+        Instance.Right = help._rightChoose;
     }
 
     public static void SetUpPanel(GameOverINFO over)
     {
-        PanelController panel = Instance;
-        panel.SetInfoMode();
-        panel.SetText(over._text);
-        panel.SetCenterButtonText(over._answer);
+        Instance.SetInfoMode();
+        Instance.SetText(over._text);
+        Instance.SetCenterButtonText(over._answer);
+        Instance.SetPanelImage((int)over._reason + 1);
     }
 
 
@@ -172,5 +174,17 @@ public class PanelController : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         GameController.Game.NextTurn();
+    }
+
+    private void SetPanelImage(int type)
+    {
+        _infoImage.SetActive(true);
+        Instance._animator.SetInteger("type", type);
+    }
+
+    private void HidePanelImage()
+    {
+        _infoImage.SetActive(false);
+        Instance._animator.SetInteger("type", 0);
     }
 }

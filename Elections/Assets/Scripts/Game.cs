@@ -7,7 +7,7 @@ public class Game
 {
     public const string SAVE_PATH = "D:/";
     private const int START_VALUE = 0;
-    private const int VALUE_TO_DECREASE = 60;
+    private const int VALUE_TO_DECREASE = 6;
 
     private int _currentTurn;
     private bool _userMadeTurn;

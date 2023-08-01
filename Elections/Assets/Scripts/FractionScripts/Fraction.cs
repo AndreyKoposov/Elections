@@ -124,7 +124,6 @@ public class Fraction : MonoBehaviour
         FractionGroup.OffInteractiveAll();
         Deselect();
         SetupTopImage();
-        StartCoroutine(Animation());
         PanelController.Instance.SetChooseMode();
 
         GameController.Game.UserMadeTurn = true;
@@ -133,6 +132,8 @@ public class Fraction : MonoBehaviour
         Quest quest = GetRandomQuest();
 
         PanelController.SetUpPanel(quest);
+
+        StartCoroutine(Animation());
     }
 
     private void SetupTopImage()
@@ -169,7 +170,6 @@ public class Fraction : MonoBehaviour
         FractionGroup.OffInteractiveAll();
         Deselect();
         SetupTopImage();
-        StartCoroutine(Animation());
         PanelController.Instance.SetChooseMode();
 
         GameController.Game.UserMadeTurn = true;
@@ -183,6 +183,8 @@ public class Fraction : MonoBehaviour
         help.InsertInTexResourceName(lowValueResource);
 
         PanelController.SetUpPanel(help);
+
+        StartCoroutine(Animation());
     }
 
     
