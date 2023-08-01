@@ -7,7 +7,7 @@ public class Game
 {
     public const string SAVE_PATH = "D:/";
     private const int START_VALUE = 0;
-    private const int VALUE_TO_DECREASE = 6;
+    private const int VALUE_TO_DECREASE = 60;
 
     private int _currentTurn;
     private bool _userMadeTurn;
@@ -34,6 +34,12 @@ public class Game
     {
         get { return _userMadeTurn; }
         set { _userMadeTurn = value; }
+    }
+
+    public int CurrentTurn
+    {
+        get { return _currentTurn; }
+        set { _currentTurn = value; }
     }
 
     public ElectionINFO ElectionInfo
@@ -107,6 +113,9 @@ public class Game
         if (TryInitGameOverInfo())
         {
             _gameOver = true;
+            PanelController.SetUpPanel(_gameOverInfo);
+            PanelController.Instance.SetDefaultMode();
+            PanelController.Instance.MoveToCenter();
             return;
         }
 
@@ -126,6 +135,7 @@ public class Game
         FractionGroup.SetAppendValues(_valuePerTurn);
         ResourceGroup.DecreaseRandomResource(VALUE_TO_DECREASE);
         ResourceGroup.AppendValuesToResources(_valuePerTurn);
+        FractionGroup.OnInteractiveAll();
         FractionGroup.OffInteractive(_whoWasAskeed);
 
         //SaveGame(this);

@@ -8,7 +8,7 @@ public class ResourceContainer : MonoBehaviour
     [SerializeField] private int _value;
     [SerializeField] private ResTypes _type;
     [SerializeField] private TextMeshProUGUI _count;
-
+    [SerializeField] private AudioSource _countSound;
     public int Value
     {
         get { return _value; }
@@ -32,6 +32,7 @@ public class ResourceContainer : MonoBehaviour
             while(valueBefore > valueNow)
             {
                 valueBefore--;
+                _countSound.Play();
                 _count.text = valueBefore.ToString();
                 yield return new WaitForSeconds(0.03f);
             }
@@ -41,6 +42,7 @@ public class ResourceContainer : MonoBehaviour
             while (valueBefore < valueNow)
             {
                 valueBefore++;
+                _countSound.Play();
                 _count.text = valueBefore.ToString();
                 yield return new WaitForSeconds(0.03f);
             }

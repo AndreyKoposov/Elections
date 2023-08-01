@@ -19,6 +19,7 @@ public class PanelController : MonoBehaviour
     [SerializeField] private ResourceGroup _resGroup;
     [SerializeField] private FractionGroup _fractionGroup;
     private MoveableImage _infoIamge;
+    private bool infoMode = true;
 
     public static PanelController Instance
     {
@@ -89,14 +90,20 @@ public class PanelController : MonoBehaviour
     {
         _performRight(_fractionGroup, _resGroup);
         RemoveFromCenter();
-        GameController.Game.NextTurn();
+        if (!infoMode)
+        {
+            EndTurn(0.3f);
+        }
     }
 
     public void LeftClick()
     {
         _performLeft(_fractionGroup, _resGroup);
         RemoveFromCenter();
-        GameController.Game.NextTurn();
+        if (!infoMode)
+        {
+            EndTurn(0.3f);
+        }
     }
 
     public void SetChooseMode()
@@ -111,5 +118,59 @@ public class PanelController : MonoBehaviour
         _rightButton.gameObject.SetActive(false);
         _leftButton.gameObject.SetActive(false);
         _centerButton.gameObject.SetActive(true);
+    }
+
+    public void SetInfoMode()
+    {
+        infoMode = true;
+    }
+
+    public void SetGameMode()
+    {
+        infoMode = false;
+    }
+
+    public static void SetUpPanel(Quest quest)
+    {
+        PanelController panel = Instance;
+        panel.SetGameMode();
+        panel.SetChooseMode();
+        panel.SetText(quest._info._text);
+        panel.SetLeftButtonText(quest._info._yesAnswer);
+        panel.SetRightButtonText(quest._info._noAnswer);
+        panel.Left = quest._taskAcception;
+        panel.Right = quest._taskDeviation;
+    }
+
+    public static void SetUpPanel(FractionHelp help)
+    {
+        PanelController panel = Instance;
+        panel.SetGameMode();
+        panel.SetChooseMode();
+        panel.SetText(help._info._text);
+        panel.SetLeftButtonText(help._info._yesAnswer);
+        panel.SetRightButtonText(help._info._noAnswer);
+        panel.Left = help._leftChoose;
+        panel.Right = help._rightChoose;
+    }
+
+    public static void SetUpPanel(GameOverINFO over)
+    {
+        PanelController panel = Instance;
+        panel.SetInfoMode();
+        panel.SetText(over._text);
+        panel.SetCenterButtonText(over._answer);
+    }
+
+
+    public void EndTurn(float seconds)
+    {
+        StartCoroutine(Coroutine(seconds));
+    }
+
+    private IEnumerator Coroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GameController.Game.NextTurn();
     }
 }

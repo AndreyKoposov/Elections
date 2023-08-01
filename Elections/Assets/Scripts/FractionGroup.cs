@@ -100,15 +100,26 @@ public class FractionGroup : MonoBehaviour
         }
     }
 
-    public static void OffInteractive(Fractions? fraction)
+    public static void OnInteractiveAll()
     {
-        if (fraction == null)
-            return;
-        Fractions frac = (Fractions)fraction;
         foreach (Fraction f in fractions.Values)
         {
             f.OnInteractive();
         }
-        fractions[frac].OffInteractive();
+    }
+
+    public static void OffInteractive(Fractions? fraction)
+    {
+        if (fraction == null)
+            return;
+        Fractions f = (Fractions)fraction;
+        fractions[f].OffInteractive();
+    }
+    public static void OffInteractiveAll()
+    {
+        foreach (Fraction f in fractions.Values)
+        {
+            f.OffInteractive();
+        }
     }
 }

@@ -111,7 +111,6 @@ public class Fraction : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        PanelController.Instance.SetChooseMode();
         PanelController.Instance.MoveToCenter();
 
         yield return new WaitForSeconds(0.5f);
@@ -122,17 +121,18 @@ public class Fraction : MonoBehaviour
 
     public void StartQuest()
     {
+        FractionGroup.OffInteractiveAll();
         Deselect();
         SetupTopImage();
         StartCoroutine(Animation());
+        PanelController.Instance.SetChooseMode();
 
         GameController.Game.UserMadeTurn = true;
         GameController.Game.WhoWasAsked = Type;
 
         Quest quest = GetRandomQuest();
 
-        PanelController panel = PanelController.Instance;
-        SetUpPanel(panel, quest);
+        PanelController.SetUpPanel(quest);
     }
 
     private void SetupTopImage()
@@ -166,9 +166,11 @@ public class Fraction : MonoBehaviour
 
     public void StartHelp()
     {
+        FractionGroup.OffInteractiveAll();
         Deselect();
         SetupTopImage();
         StartCoroutine(Animation());
+        PanelController.Instance.SetChooseMode();
 
         GameController.Game.UserMadeTurn = true;
         GameController.Game.WhoWasAsked = Type;
@@ -180,27 +182,10 @@ public class Fraction : MonoBehaviour
         help.InsertInTextFractionName(lowRateFraction);
         help.InsertInTexResourceName(lowValueResource);
 
-        PanelController panel = PanelController.Instance;
-        SetUpPanel(panel, help);
+        PanelController.SetUpPanel(help);
     }
 
-    private void SetUpPanel(PanelController panel, Quest quest)
-    {
-        panel.SetText(quest._info._text);
-        panel.SetLeftButtonText(quest._info._yesAnswer);
-        panel.SetRightButtonText(quest._info._noAnswer);
-        panel.Left = quest._taskAcception;
-        panel.Right = quest._taskDeviation;
-    }
-
-    private void SetUpPanel(PanelController panel, FractionHelp help)
-    {
-        panel.SetText(help._info._text);
-        panel.SetLeftButtonText(help._info._yesAnswer);
-        panel.SetRightButtonText(help._info._noAnswer);
-        panel.Left = help._leftChoose;
-        panel.Right = help._rightChoose;
-    }
+    
 
     protected virtual FractionHelp GetHelp()
     {
@@ -210,11 +195,9 @@ public class Fraction : MonoBehaviour
     public void OnInteractive()
     {
         _imageButton.enabled = true;
-        Debug.Log("On " + Type);
     }
     public void OffInteractive()
     {
         _imageButton.enabled = false;
-        Debug.Log("Off " + Type);
     }
 }
