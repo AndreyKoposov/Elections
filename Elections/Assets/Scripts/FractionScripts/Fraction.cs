@@ -22,6 +22,7 @@ public class Fraction : MonoBehaviour
     private Button _imageButton;
     public MoveableImage TopImage;
     public Rate rateBar;
+    public VoteBar voteBar;
     public Image redFlag;
     public Image greenFlag;
     private bool helpLocked = true;
@@ -151,6 +152,11 @@ public class Fraction : MonoBehaviour
 
     public void StartQuest()
     {
+        if (Type == Fractions.PEOPLE)
+        {
+            voteBar.SetForLast(1);
+            voteBar.SetAgainstLast(1);
+        }
         FractionGroup.OffInteractiveAll();
         Deselect();
         SetupTopImage();

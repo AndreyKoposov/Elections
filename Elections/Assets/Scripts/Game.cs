@@ -123,6 +123,7 @@ public class Game
         {
             _gameOver = !isUserWinElections();
             _electionInfo = new ElectionINFO(FractionGroup.Group, _gameOver);
+            FractionGroup.ResetVotes();
         }
         else
         {

@@ -122,4 +122,12 @@ public class FractionGroup : MonoBehaviour
             f.OffInteractive();
         }
     }
+
+    public static void ResetVotes()
+    {
+        foreach(Fraction fraction in fractions.Values)
+        {
+            fraction.voteBar.ResetAll();
+        }
+    }
 }
