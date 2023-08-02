@@ -24,6 +24,7 @@ public class Fraction : MonoBehaviour
     public Rate rateBar;
     public Image redFlag;
     public Image greenFlag;
+    private bool helpLocked = true;
 
     protected int _rate;
 
@@ -41,6 +42,7 @@ public class Fraction : MonoBehaviour
             int diff = value - buffer;
             rateBar.SetRate(_rate);
             SetFlag();
+            SetHelp();
         }
     }
 
@@ -67,6 +69,7 @@ public class Fraction : MonoBehaviour
 
     private void Awake()
     {
+        LockHelp();
         _imageButton = _image.gameObject.GetComponent<Button>();
     }
 
@@ -83,6 +86,15 @@ public class Fraction : MonoBehaviour
             return;
         }
         ResetFlags();
+    }
+
+    private void SetHelp()
+    {
+        if (Rate >= 75)
+        {
+            UnlockHelp();
+        } else
+            LockHelp();
     }
 
     private void Start()
@@ -185,6 +197,8 @@ public class Fraction : MonoBehaviour
 
     public void StartHelp()
     {
+        if (helpLocked)
+            return;
         FractionGroup.OffInteractiveAll();
         Deselect();
         SetupTopImage();
@@ -234,5 +248,19 @@ public class Fraction : MonoBehaviour
     {
         greenFlag.gameObject.SetActive(false);
         redFlag.gameObject.SetActive(false); ;
+    }
+
+    private void LockHelp()
+    {
+        HelpButton help = (HelpButton)_help;
+        help.Transparent = 0.25f;
+        helpLocked = true;
+    }
+
+    private void UnlockHelp()
+    {
+        HelpButton help = (HelpButton)_help;
+        help.Transparent = 0.75f;
+        helpLocked = false;
     }
 }

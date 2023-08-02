@@ -25,16 +25,15 @@ public class ResourceContainer : MonoBehaviour
             if (_value < 0)
                 _value = 0;
             int diff = _value - buffer;
-            StartCoroutine(SetValueToCount(_value, buffer));
-            SetCountColor();
+            StartCoroutine(SetValueToCount(buffer));
         }
     }
 
-    private IEnumerator SetValueToCount(int valueNow, int valueBefore)
+    private IEnumerator SetValueToCount(int valueBefore)
     {
-        if(valueNow < valueBefore)
+        if (_value < valueBefore)
         {
-            while(valueBefore > valueNow)
+            while(valueBefore > _value)
             {
                 valueBefore--;
                 _countSound.Play();
@@ -44,7 +43,7 @@ public class ResourceContainer : MonoBehaviour
         }
         else
         {
-            while (valueBefore < valueNow)
+            while (valueBefore < _value)
             {
                 valueBefore++;
                 _countSound.Play();
@@ -72,6 +71,11 @@ public class ResourceContainer : MonoBehaviour
     public ResTypes Type
     {
         get { return _type; }
+    }
+
+    private void Update()
+    {
+        SetCountColor();
     }
 
     public static int CompareResource(ResourceContainer x, ResourceContainer y)
