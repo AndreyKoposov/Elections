@@ -125,6 +125,7 @@ public class Game
         if (isTurnOfElections() && !_gameOver)
         {
             FractionGroup.FillRemaining();
+            
             _gameOver = !isUserWinElections();
             _electionInfo = new ElectionINFO(FractionGroup.Group, _gameOver);
             PanelController.SetUpPanel(_electionInfo);

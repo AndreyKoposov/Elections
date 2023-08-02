@@ -52,10 +52,8 @@ public class Vote : MonoBehaviour
         int randomNumber = random.Next(Fraction.MIN_RATE, Fraction.MAX_RATE + 1);
 
         if (randomNumber < rate)
-        {
-            SetAgainst();
-        }
-        else
             SetFor();
+        else
+            SetAgainst();
     }
 }
