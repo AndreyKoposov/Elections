@@ -47,17 +47,9 @@ public class Fraction : MonoBehaviour
         }
     }
 
-    public int Vote
+    public int Votes
     {
-        get
-        {
-            if (_rate <= 25)
-                return -1;
-            if (_rate >= 75)
-                return 1;
-            else
-                return 0;
-        }
+        get { return voteBar.CountVotes(); }
     }
     public virtual Fractions Type
     {
@@ -152,11 +144,9 @@ public class Fraction : MonoBehaviour
 
     public void StartQuest()
     {
-        if (Type == Fractions.PEOPLE)
-        {
+        
             voteBar.SetForLast(1);
             voteBar.SetAgainstLast(1);
-        }
         FractionGroup.OffInteractiveAll();
         Deselect();
         SetupTopImage();

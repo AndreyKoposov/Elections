@@ -8,6 +8,7 @@ public class ElectionINFO
     public string _answerText;
     public bool _win;
     public bool _isElection;
+    public CenterButtonAction _ButtonClick;
 
     public ElectionINFO(Dictionary<Fractions, Fraction> group, bool gameOver)
     {
@@ -15,14 +16,11 @@ public class ElectionINFO
         _win = !gameOver;
         _answerText = GetAnswerText(gameOver);
 
-        _text += GetNewInfoLine(group[Fractions.OLIGARCH]);
-        _text += GetNewInfoLine(group[Fractions.PEOPLE]);
-        _text += GetNewInfoLine(group[Fractions.MAFIA]);
-        _text += GetNewInfoLine(group[Fractions.WARRIOR]);
-
         _text += GetInfoFooter(gameOver);
 
         _isElection = true;
+
+        InitButtonClick();
     }
 
     public ElectionINFO()
@@ -31,6 +29,20 @@ public class ElectionINFO
         _text = "";
         _answerText = "";
         _isElection = false;
+
+        InitButtonClick();
+    }
+
+    private void InitButtonClick() 
+    {
+        if(!_win)
+            _ButtonClick = () =>
+            {
+                PanelController.Instance.EndGame();
+                FractionGroup.ResetVotes();
+            };
+        else
+            _ButtonClick = () => { FractionGroup.ResetVotes(); };
     }
 
     private string GetInfoHeader()
@@ -61,6 +73,8 @@ public class ElectionINFO
             return "Отлично";
         }
     }
+
+
 
     private string GetNewInfoLine(Fraction fraction)
     {

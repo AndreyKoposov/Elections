@@ -53,9 +53,9 @@ public class Vote : MonoBehaviour
 
         if (randomNumber < rate)
         {
-            state = VoteState.Against;
+            SetAgainst();
         }
         else
-            state = VoteState.For;
+            SetFor();
     }
 }

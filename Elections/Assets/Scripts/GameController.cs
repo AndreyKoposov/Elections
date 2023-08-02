@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        LeanTween.init(800);
+        LeanTween.init(1600);
         game = new Game();
     }
 

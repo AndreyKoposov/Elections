@@ -8,6 +8,7 @@ public class Game
     public const string SAVE_PATH = "D:/";
     private const int START_VALUE = 0;
     private const int VALUE_TO_DECREASE = 6;
+    private const int TOTAL_VOTES = 24;
 
     private int _currentTurn;
     private bool _userMadeTurn;
@@ -121,9 +122,12 @@ public class Game
 
         if (isTurnOfElections() && !_gameOver)
         {
+            FractionGroup.FillRemaining();
             _gameOver = !isUserWinElections();
             _electionInfo = new ElectionINFO(FractionGroup.Group, _gameOver);
-            FractionGroup.ResetVotes();
+            PanelController.SetUpPanel(_electionInfo);
+            PanelController.Instance.SetDefaultMode();
+            PanelController.Instance.MoveToCenter();
         }
         else
         {
@@ -156,7 +160,7 @@ public class Game
 
     private bool isUserWinElections()
     {
-        if (FractionGroup.CountVotes() < 0)
+        if (FractionGroup.CountVotes() < TOTAL_VOTES / 2)
             return false;
         return true;
     }

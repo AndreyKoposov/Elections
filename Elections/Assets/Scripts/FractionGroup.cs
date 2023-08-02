@@ -68,10 +68,10 @@ public class FractionGroup : MonoBehaviour
 
     public static int CountVotes()
     {
-        int sumOfVotes = fractions[Fractions.OLIGARCH].Vote
-            + fractions[Fractions.PEOPLE].Vote
-            + fractions[Fractions.WARRIOR].Vote
-            + fractions[Fractions.MAFIA].Vote;
+        int sumOfVotes = fractions[Fractions.OLIGARCH].Votes
+            + fractions[Fractions.PEOPLE].Votes
+            + fractions[Fractions.WARRIOR].Votes
+            + fractions[Fractions.MAFIA].Votes;
         return sumOfVotes;
     }
 
@@ -128,6 +128,14 @@ public class FractionGroup : MonoBehaviour
         foreach(Fraction fraction in fractions.Values)
         {
             fraction.voteBar.ResetAll();
+        }
+    }
+
+    public static void FillRemaining()
+    {
+        foreach(Fraction fraction in fractions.Values)
+        {
+            fraction.voteBar.FillReamaining(fraction.Rate);
         }
     }
 }

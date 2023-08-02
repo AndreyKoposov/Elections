@@ -177,6 +177,14 @@ public class PanelController : MonoBehaviour
         Instance.SetPanelImage((int)over._reason + 1);
         Instance._performCenterButton = over._ButtonClick;
     }
+    public static void SetUpPanel(ElectionINFO election)
+    {
+        Instance.SetInfoMode();
+        Instance.SetText(election._text);
+        Instance.SetCenterButtonText(election._answerText);
+        Instance.SetPanelImage(election._win);
+        Instance._performCenterButton = election._ButtonClick;
+    }
 
 
     public void EndTurn(float seconds)
@@ -194,6 +202,14 @@ public class PanelController : MonoBehaviour
     {
         _infoImage.SetActive(true);
         Instance._animator.SetInteger("type", type);
+    }
+    private void SetPanelImage(bool isWin)
+    {
+        _infoImage.SetActive(true);
+        if(isWin)
+            Instance._animator.SetInteger("type", 5);
+        else
+            Instance._animator.SetInteger("type", 6);
     }
 
     private void HidePanelImage()
