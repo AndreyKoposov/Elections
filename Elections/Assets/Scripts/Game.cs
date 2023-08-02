@@ -6,9 +6,9 @@ using Random = System.Random;
 public class Game
 {
     public const string SAVE_PATH = "D:/";
-    private const int START_VALUE = 0;
-    private const int VALUE_TO_DECREASE = 6;
-    private const int TOTAL_VOTES = 24;
+    public const int TOTAL_VOTES = 24;
+    public const int START_VALUE = 0;
+    public const int VALUE_TO_DECREASE = 6;
 
     private int _currentTurn;
     private bool _userMadeTurn;
@@ -17,6 +17,7 @@ public class Game
     private Fractions? _whoWasAskeed;
     private GameOverINFO _gameOverInfo;
     private Dictionary<ResTypes, int> _valuePerTurn;
+    private int _forVotes;
 
     public Game()
     {
@@ -27,6 +28,7 @@ public class Game
         _electionInfo = new ElectionINFO();
         _gameOverInfo = null;
         _valuePerTurn = InitDictOfValues();
+        _forVotes = 0;
 
         InitAllData();
     }
@@ -128,6 +130,8 @@ public class Game
             PanelController.SetUpPanel(_electionInfo);
             PanelController.Instance.SetDefaultMode();
             PanelController.Instance.MoveToCenter();
+            PanelController.Instance.graphic.SetGreen(_forVotes);
+            PanelController.Instance.graphic.SetRed(TOTAL_VOTES - _forVotes);
         }
         else
         {
@@ -160,7 +164,8 @@ public class Game
 
     private bool isUserWinElections()
     {
-        if (FractionGroup.CountVotes() < TOTAL_VOTES / 2)
+        _forVotes = FractionGroup.CountVotes();
+        if (_forVotes < TOTAL_VOTES / 2)
             return false;
         return true;
     }

@@ -42,12 +42,17 @@ public class ElectionINFO
                 FractionGroup.ResetVotes();
             };
         else
-            _ButtonClick = () => { FractionGroup.ResetVotes(); };
+            _ButtonClick = () => 
+            { 
+                FractionGroup.ResetVotes();
+                PanelController.Instance.graphic.gameObject.SetActive(false);
+                PanelController.Instance.HidePanelImage();
+            };
     }
 
     private string GetInfoHeader()
     {
-        return "ВЫБОРЫ\nРезультаты голосования:\n\n";
+        return "ВЫБОРЫ\nРезультаты голосования:\n\n\n\n";
     }
 
     private string GetInfoFooter(bool gameOver)

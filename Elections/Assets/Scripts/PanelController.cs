@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PanelController : MonoBehaviour
 {
     private static PanelController instance;
+    public ElectionsGraphic graphic;
     public TextMeshProUGUI _text;
     public TextMeshProUGUI _leftButtonText;
     public TextMeshProUGUI _rightButtonText;
@@ -179,6 +180,7 @@ public class PanelController : MonoBehaviour
     }
     public static void SetUpPanel(ElectionINFO election)
     {
+        Instance.graphic.gameObject.SetActive(true);
         Instance.SetInfoMode();
         Instance.SetText(election._text);
         Instance.SetCenterButtonText(election._answerText);
@@ -212,7 +214,7 @@ public class PanelController : MonoBehaviour
             Instance._animator.SetInteger("type", 6);
     }
 
-    private void HidePanelImage()
+    public void HidePanelImage()
     {
         _infoImage.SetActive(false);
         Instance._animator.SetInteger("type", 0);
