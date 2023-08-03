@@ -23,6 +23,7 @@ public class NewGameButton : GameButton
 
     public void StartGame()
     {
+        PlayerPrefs.SetInt("isLoad", 0);
         StartCoroutine(waiter());
     }
 

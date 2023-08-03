@@ -26,8 +26,8 @@ public class Fraction : MonoBehaviour
     public Image redFlag;
     public Image greenFlag;
     public Image Mark;
-    private bool helpLocked = true;
-    private bool exclamationMark = false;
+    protected bool helpLocked = true;
+    protected bool exclamationMark = false;
 
     protected int _rate;
 
@@ -69,6 +69,7 @@ public class Fraction : MonoBehaviour
 
     private void Awake()
     {
+        _rate = 50;
         LockHelp();
         _imageButton = _image.gameObject.GetComponent<Button>();
     }
@@ -99,7 +100,7 @@ public class Fraction : MonoBehaviour
 
     private void Start()
     {
-        Rate = 50;
+        Rate = _rate;
     }
 
     public void Select()

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class Game
 {
-    public const string SAVE_PATH = "D:/";
     public const int TOTAL_VOTES = 24;
     public const int START_VALUE = 0;
     public const int VALUE_TO_DECREASE = 6;
@@ -17,6 +18,7 @@ public class Game
     private GameOverINFO _gameOverInfo;
     private Dictionary<ResTypes, int> _valuePerTurn;
     private int _forVotes;
+    private SerializableContainer _serializableContianer;
 
     public Game()
     {
@@ -58,6 +60,12 @@ public class Game
     {
         get { return _whoWasAskeed; }
         set { _whoWasAskeed = value; }
+    }
+
+    public SerializableContainer Container
+    {
+        get { return _serializableContianer; }
+        set { _serializableContianer = value; }
     }
 
     public int MoneyChange
@@ -156,7 +164,7 @@ public class Game
         FractionGroup.OnInteractiveAll();
         FractionGroup.OffInteractive(_whoWasAskeed);
 
-        //SaveGame(this);
+        GameController.SaveGame();
     }
 
     private bool TryInitGameOverInfo()

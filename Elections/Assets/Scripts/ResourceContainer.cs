@@ -73,6 +73,16 @@ public class ResourceContainer : MonoBehaviour
         get { return _type; }
     }
 
+    public bool GreenArrow
+    {
+        get { return greenArrow.gameObject.activeSelf; }
+    }
+
+    public bool RedArrow
+    {
+        get { return redArrow.gameObject.activeSelf; }
+    }
+
     private void Update()
     {
         SetCountColor();
