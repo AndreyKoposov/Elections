@@ -34,7 +34,6 @@ public class ElectionINFO
 
         InitButtonClick();
     }
-
     private void InitButtonClick() 
     {
         if(!_win)
@@ -45,10 +44,12 @@ public class ElectionINFO
             };
         else
             _ButtonClick = () => 
-            { 
+            {
                 FractionGroup.ResetVotes();
                 PanelController.Instance.graphic.gameObject.SetActive(false);
                 PanelController.Instance.HidePanelImage();
+
+                GameController.SaveGame();
             };
     }
 
@@ -79,20 +80,5 @@ public class ElectionINFO
         {
             return "Отлично";
         }
-    }
-
-
-
-    private string GetNewInfoLine(Fraction fraction)
-    {
-        string vote;
-        if (fraction.Rate > 25 && fraction.Rate < 75)
-            vote = "Воздержался";
-        else
-        {
-            vote = fraction.Rate >= 75 ? "За" : "Против";
-        }
-        string infoLine = $" - {EnumConverter.ToString(fraction.Type)} : {vote}\n";
-        return infoLine;
     }
 }

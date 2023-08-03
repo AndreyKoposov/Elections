@@ -6,6 +6,7 @@ using System.IO;
 using System;
 using Random = System.Random;
 
+[Serializable]
 public enum Fractions
 {
     OLIGARCH, PEOPLE, MAFIA, WARRIOR
@@ -101,6 +102,7 @@ public class Fraction : MonoBehaviour
     private void Start()
     {
         Rate = _rate;
+        voteBar.ResetAll();
     }
 
     public void Select()

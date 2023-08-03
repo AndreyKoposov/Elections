@@ -115,6 +115,7 @@ public class FractionGroup : MonoBehaviour
         Fractions f = (Fractions)fraction;
         fractions[f].OffInteractive();
     }
+
     public static void OffInteractiveAll()
     {
         foreach (Fraction f in fractions.Values)

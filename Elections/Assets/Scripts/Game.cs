@@ -137,6 +137,7 @@ public class Game
             _electionInfo = new ElectionINFO(FractionGroup.Group, _gameOver);
             PanelController.SetUpPanel(_electionInfo);
             PanelController.Instance.SetDefaultMode();
+            FractionGroup.OffInteractiveAll();
             PanelController.Instance.MoveToCenter(2f);
             PanelController.Instance.graphic.SetGreen(_forVotes);
             PanelController.Instance.graphic.SetRed(TOTAL_VOTES - _forVotes);
@@ -144,6 +145,8 @@ public class Game
         else
         {
             _electionInfo = new ElectionINFO();
+            FractionGroup.OnInteractiveAll();
+            FractionGroup.OffInteractive(_whoWasAskeed);
         }
 
         _currentTurn++;
@@ -161,10 +164,6 @@ public class Game
         FractionGroup.SetAppendValues(_valuePerTurn);
         ResourceGroup.DecreaseRandomResource(VALUE_TO_DECREASE);
         ResourceGroup.AppendValuesToResources(_valuePerTurn);
-        FractionGroup.OnInteractiveAll();
-        FractionGroup.OffInteractive(_whoWasAskeed);
-
-        GameController.SaveGame();
     }
 
     private bool TryInitGameOverInfo()

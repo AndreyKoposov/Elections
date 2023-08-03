@@ -6,24 +6,30 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     private static Game game;
-    public static Storage storage;
+    private static Storage storage;
+    private static bool isGameLoaded;
+    private static int isLoad;
 
     private void Awake()
     {
         LeanTween.init(1600);
         storage = new Storage();
         game = new Game();
+        isGameLoaded = false;
+        isLoad = PlayerPrefs.GetInt("isLoad");
     }
 
     private void Start()
     {
-        int isLoad = PlayerPrefs.GetInt("isLoad");
-        if (isLoad == 1)
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isGameLoaded && isLoad == 1)
         {
             LoadData();
         }
     }
-
 
 
     public static Game Game
@@ -43,5 +49,8 @@ public class GameController : MonoBehaviour
         game = storage.Load(game) as Game;
         
         game.Container.Load(FractionGroup.Group, ResourceGroup.Group);
+        FractionGroup.OffInteractive(game.WhoWasAsked);
+
+        isGameLoaded = true;
     }
 }

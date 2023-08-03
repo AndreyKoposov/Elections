@@ -11,6 +11,16 @@ public class VoteBar : MonoBehaviour
         InitVoteList();
     }
 
+    public VoteState this[int k]
+    {
+        get { return votes[k].State; }
+    }
+
+    public int Lenght
+    {
+        get { return votes.Count; }
+    }
+
 
     private void InitVoteList()
     {

@@ -12,11 +12,6 @@ public class Check : MonoBehaviour
         image = GetComponent<Image>();
     }
 
-    private void Start()
-    {
-        Off();
-    }
-
     public void On()
     {
         image.gameObject.SetActive(true);

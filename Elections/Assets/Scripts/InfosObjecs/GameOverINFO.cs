@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
+[Serializable]
 public delegate void CenterButtonAction();
 
 [Serializable]

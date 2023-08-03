@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public enum VoteState
 {
     None, Against, For
@@ -20,7 +22,6 @@ public class Vote : MonoBehaviour
 
     private void Awake()
     {
-        state = VoteState.None;
         check = GetComponentInChildren<Check>();
         cross = GetComponentInChildren<Cross>();
     }
