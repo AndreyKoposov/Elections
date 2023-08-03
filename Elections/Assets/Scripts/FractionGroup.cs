@@ -138,4 +138,44 @@ public class FractionGroup : MonoBehaviour
             fraction.voteBar.FillReamaining(fraction.Rate);
         }
     }
+
+    public static void SetOneFractionMark()
+    {
+        ResetAllMark();
+
+        List<Fraction> selectoredList = new List<Fraction>();
+        SelectFractions(selectoredList);
+        if (isEmpty(selectoredList))
+        {
+            return;
+        }
+        
+        Fraction markFraction = selectoredList[Randomizer.GetRandom(0, selectoredList.Count)];
+        markFraction.SetMark();
+
+    }
+
+    public static void ResetAllMark()
+    {
+        foreach (Fraction fraction in fractions.Values)
+        {
+            fraction.ResetMark();
+        }
+    }
+
+    private static void SelectFractions(List<Fraction> listWhereSelect)
+    {
+        foreach (var pair in fractions)
+        {
+            if(GameController.Game.WhoWasAsked != pair.Key && !pair.Value.voteBar.isFilled())
+            {
+                listWhereSelect.Add(pair.Value);
+            }
+        }
+    }
+
+    private static bool isEmpty(List<Fraction> list)
+    {
+        return list.Count == 0;
+    }
 }

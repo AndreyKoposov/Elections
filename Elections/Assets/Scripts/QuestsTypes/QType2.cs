@@ -22,7 +22,7 @@ public class QType2 : Quest
         _anotherFraction = _info._fractions.First();
         _resToIncrease = _info._resources.First();
 
-        this._taskAcception = (group, res) =>
+        this._taskAcception += (group, res) =>
         {
             Fraction MainFractionObj = GetFractionByEnumFromGroup(_whichQuest, group);
             MainFractionObj.Rate += _rateUp;
@@ -32,7 +32,7 @@ public class QType2 : Quest
             resourceToIncrease.Value += _resUp;
         };
 
-        this._taskDeviation = (group, res) =>
+        this._taskDeviation += (group, res) =>
         {
             Fraction MainFractionObj = GetFractionByEnumFromGroup(_whichQuest, group);
             MainFractionObj.Rate -= _rateUp;

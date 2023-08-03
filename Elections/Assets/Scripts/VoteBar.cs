@@ -70,6 +70,16 @@ public class VoteBar : MonoBehaviour
         return counter;
     }
 
+    public bool isFilled()
+    {
+        foreach (Vote vote in votes)
+        {
+            if (isNone(vote))
+                return false;
+        }
+        return true;
+    }
+
     private bool isNone(Vote vote) 
     { 
         return vote.State == VoteState.None;

@@ -25,7 +25,9 @@ public class Fraction : MonoBehaviour
     public VoteBar voteBar;
     public Image redFlag;
     public Image greenFlag;
+    public Image Mark;
     private bool helpLocked = true;
+    private bool exclamationMark = false;
 
     protected int _rate;
 
@@ -45,6 +47,11 @@ public class Fraction : MonoBehaviour
             SetFlag();
             SetHelp();
         }
+    }
+
+    public bool Exclamation
+    {
+        get { return exclamationMark; }
     }
 
     public int Votes
@@ -134,7 +141,7 @@ public class Fraction : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        PanelController.Instance.MoveToCenter();
+        PanelController.Instance.MoveToCenter(0);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -144,9 +151,6 @@ public class Fraction : MonoBehaviour
 
     public void StartQuest()
     {
-        
-            voteBar.SetForLast(1);
-            voteBar.SetAgainstLast(1);
         FractionGroup.OffInteractiveAll();
         Deselect();
         SetupTopImage();
@@ -258,5 +262,17 @@ public class Fraction : MonoBehaviour
         HelpButton help = (HelpButton)_help;
         help.Transparent = 0.75f;
         helpLocked = false;
+    }
+
+    public void SetMark()
+    {
+        exclamationMark = true;
+        Mark.gameObject.SetActive(true);
+    }
+
+    public void ResetMark()
+    {
+        exclamationMark = false;
+        Mark.gameObject.SetActive(false);
     }
 }

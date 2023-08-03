@@ -54,14 +54,20 @@ public class PanelController : MonoBehaviour
         set { _fractionImage = value; }
     }
 
-    public void MoveToCenter()
+    public void MoveToCenter(float secondsToWait)
     {
-        LeanTween.moveLocalX(gameObject, 30f, 0.3f);
+        StartCoroutine(MoveToCenterAnimation(secondsToWait));
     }
 
     public void RemoveFromCenter()
     {
         StartCoroutine(Animation());
+    }
+
+    private IEnumerator MoveToCenterAnimation(float secondToWait)
+    {
+        yield return new WaitForSeconds(secondToWait);
+        LeanTween.moveLocalX(gameObject, 30f, 0.3f);
     }
 
     private IEnumerator Animation()
@@ -178,6 +184,7 @@ public class PanelController : MonoBehaviour
         Instance.SetPanelImage((int)over._reason + 1);
         Instance._performCenterButton = over._ButtonClick;
     }
+
     public static void SetUpPanel(ElectionINFO election)
     {
         Instance.graphic.gameObject.SetActive(true);

@@ -26,7 +26,7 @@ public class QType4 : Quest
         _fractionToDecrease = _info._fractions.Last();
         _resToDecrease = _info._resources.First();
 
-        this._taskAcception = (group, res) =>
+        this._taskAcception += (group, res) =>
         {
             Fraction MainFractionObj = GetFractionByEnumFromGroup(_whichQuest, group);
             MainFractionObj.Rate += _rateUp;
@@ -34,11 +34,12 @@ public class QType4 : Quest
             AnotherFractionObj.Rate += _secondRateUp;
             Fraction SecondFractionObj = GetFractionByEnumFromGroup(_fractionToDecrease, group);
             SecondFractionObj.Rate -= _rateDown;
+            SecondFractionObj.voteBar.SetAgainstLast(1);
             ResourceContainer resourceToDecrease = GetResourceByEnumFromGroup(_resToDecrease, res);
             resourceToDecrease.Value -= _resDown;
         };
 
-        this._taskDeviation = (group, res) =>
+        this._taskDeviation += (group, res) =>
         {
             Fraction MainFractionObj = GetFractionByEnumFromGroup(_whichQuest, group);
             MainFractionObj.Rate -= _rateUp;
@@ -46,6 +47,7 @@ public class QType4 : Quest
             AnotherFractionObj.Rate -= _rateDown;
             Fraction SecondFractionObj = GetFractionByEnumFromGroup(_fractionToDecrease, group);
             SecondFractionObj.Rate += _rateUp + 6;
+            SecondFractionObj.voteBar.SetForLast(1);
         };
     }
 }

@@ -18,20 +18,22 @@ public class QType1 : Quest
         _info = GetQuestInfoByFraction(_whichQuest, TYPE);
         _anotherFraction = _info._fractions.First();
 
-        this._taskAcception = (group, res) =>
+        this._taskAcception += (group, res) =>
         {
             Fraction MainFractionObj = GetFractionByEnumFromGroup(_whichQuest, group);
             MainFractionObj.Rate += _rateUp;
+            MainFractionObj.voteBar.SetForLast(1);
             Fraction AnotherFractionObj = GetFractionByEnumFromGroup(_anotherFraction, group);
             AnotherFractionObj.Rate -= _rateDown;
         };
 
-        this._taskDeviation = (group, res) =>
+        this._taskDeviation += (group, res) =>
         {
             Fraction MainFractionObj = GetFractionByEnumFromGroup(_whichQuest, group);
             MainFractionObj.Rate -= _rateDown;
             Fraction AnotherFractionObj = GetFractionByEnumFromGroup(_anotherFraction, group);
             AnotherFractionObj.Rate += _rateUp;
+            AnotherFractionObj.voteBar.SetForLast(1);
         };
     }
 }

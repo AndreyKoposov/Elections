@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = System.Random;
 
 public enum VoteState
 {
@@ -48,8 +46,7 @@ public class Vote : MonoBehaviour
 
     public void SetRandomState(int rate)
     {
-        Random random = new Random();
-        int randomNumber = random.Next(Fraction.MIN_RATE, Fraction.MAX_RATE + 1);
+        int randomNumber = Randomizer.GetRandom(Fraction.MIN_RATE, Fraction.MAX_RATE + 1);
 
         if (randomNumber < rate)
             SetFor();

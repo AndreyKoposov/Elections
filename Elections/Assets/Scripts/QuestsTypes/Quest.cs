@@ -16,6 +16,7 @@ public class Quest
     public Quest(Fractions fraction)
     {
         _whichQuest = fraction;
+        InitTasks();
     }
 
     protected Fraction GetFractionByEnumFromGroup(Fractions fraction, FractionGroup group)
@@ -74,5 +75,36 @@ public class Quest
         text = text.Replace("_I_", DataContainer.RandomImperia);
         info._text = text;
         return info;
+    }
+
+    protected void AddVoteIfMark(Fraction fraction)
+    {
+        if (fraction.Exclamation)
+        {
+            fraction.voteBar.SetForLast(1);
+        }
+    }
+
+    protected void SubVoteIfMark(Fraction fraction)
+    {
+        if (fraction.Exclamation)
+        {
+            fraction.voteBar.SetAgainstLast(1);
+        }
+    }
+
+    protected void InitTasks()
+    {
+        _taskAcception += (group, res) =>
+        {
+            Fraction MainFractionObj = GetFractionByEnumFromGroup(_whichQuest, group);
+            AddVoteIfMark(MainFractionObj);
+        };
+
+        _taskDeviation += (group, res) =>
+        {
+            Fraction MainFractionObj = GetFractionByEnumFromGroup(_whichQuest, group);
+            SubVoteIfMark(MainFractionObj);
+        };
     }
 }

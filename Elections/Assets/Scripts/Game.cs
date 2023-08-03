@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = System.Random;
 
 public class Game
 {
@@ -118,7 +117,7 @@ public class Game
             _gameOver = true;
             PanelController.SetUpPanel(_gameOverInfo);
             PanelController.Instance.SetDefaultMode();
-            PanelController.Instance.MoveToCenter();
+            PanelController.Instance.MoveToCenter(0);
             return;
         }
 
@@ -130,7 +129,7 @@ public class Game
             _electionInfo = new ElectionINFO(FractionGroup.Group, _gameOver);
             PanelController.SetUpPanel(_electionInfo);
             PanelController.Instance.SetDefaultMode();
-            PanelController.Instance.MoveToCenter();
+            PanelController.Instance.MoveToCenter(2f);
             PanelController.Instance.graphic.SetGreen(_forVotes);
             PanelController.Instance.graphic.SetRed(TOTAL_VOTES - _forVotes);
         }
@@ -142,6 +141,15 @@ public class Game
         _currentTurn++;
         _userMadeTurn = false;
 
+        if (isTurnOfMarkingFraction())
+        {
+            FractionGroup.SetOneFractionMark();
+        }
+        else
+        {
+            FractionGroup.ResetAllMark();
+        }
+        
         FractionGroup.SetAppendValues(_valuePerTurn);
         ResourceGroup.DecreaseRandomResource(VALUE_TO_DECREASE);
         ResourceGroup.AppendValuesToResources(_valuePerTurn);
@@ -169,5 +177,10 @@ public class Game
         if (_forVotes < TOTAL_VOTES / 2)
             return false;
         return true;
+    }
+
+    private bool isTurnOfMarkingFraction()
+    {
+        return Randomizer.GetRandom(0, 2) == 0;
     }
 }
