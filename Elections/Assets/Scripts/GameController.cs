@@ -48,7 +48,9 @@ public class GameController : MonoBehaviour
     {
         game = storage.Load(game) as Game;
         
-        game.Container.Load(FractionGroup.Group, ResourceGroup.Group);
+        if(game.Container != null)
+            game.Container.Load(FractionGroup.Group, ResourceGroup.Group);
+
         FractionGroup.OffInteractive(game.WhoWasAsked);
 
         isGameLoaded = true;
