@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class QuestButton : GameButton
 {
-    private RectTransform rect;
     private float startTransparent;
     [SerializeField] private float _transparent;
     [SerializeField] private int direction;
 
     private void Awake()
     {
-        rect = gameObject.GetComponent<RectTransform>();
+        rect = GetComponent<RectTransform>();
         startTransparent = gameObject.GetComponent<Image>().color.a;
         gameObject.SetActive(false);
     }

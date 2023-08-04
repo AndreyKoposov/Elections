@@ -55,7 +55,7 @@ public class ElectionINFO
 
     private string GetInfoHeader()
     {
-        return "ВЫБОРЫ\nРезультаты голосования:\n\n\n\n";
+        return "ВЫБОРЫ\nРезультаты голосования:\n\n\n";
     }
 
     private string GetInfoFooter(bool gameOver)

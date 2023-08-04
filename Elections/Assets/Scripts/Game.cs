@@ -138,9 +138,7 @@ public class Game
             PanelController.SetUpPanel(_electionInfo);
             PanelController.Instance.SetDefaultMode();
             FractionGroup.OffInteractiveAll();
-            PanelController.Instance.MoveToCenter(2f);
-            PanelController.Instance.graphic.SetGreen(_forVotes);
-            PanelController.Instance.graphic.SetRed(TOTAL_VOTES - _forVotes);
+            PanelController.Instance.MoveToCenter(2f, _forVotes);
         }
         else
         {

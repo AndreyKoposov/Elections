@@ -61,19 +61,36 @@ public class PanelController : MonoBehaviour
 
     public void MoveToCenter(float secondsToWait)
     {
+        ExitGame.Instance.interactable = false;
         StartCoroutine(MoveToCenterAnimation(secondsToWait));
+    }
+
+    public void MoveToCenter(float secondsToWait, int forVotes)
+    {
+        ExitGame.Instance.interactable = false;
+        StartCoroutine(MoveToCenterAnimationElection(secondsToWait, forVotes));
     }
 
     public void RemoveFromCenter()
     {
         infoMode = false;
         StartCoroutine(Animation());
+        ExitGame.Instance.interactable = true;
     }
 
     private IEnumerator MoveToCenterAnimation(float secondToWait)
     {
         yield return new WaitForSeconds(secondToWait);
         LeanTween.moveLocalX(gameObject, 30f, 0.3f);
+    }
+
+    private IEnumerator MoveToCenterAnimationElection(float secondToWait, int forVotes)
+    {
+        yield return new WaitForSeconds(secondToWait);
+        LeanTween.moveLocalX(gameObject, 30f, 0.3f);
+        yield return new WaitForSeconds(0.2f);
+        Instance.graphic.SetGreen(forVotes);
+        Instance.graphic.SetRed(Game.TOTAL_VOTES - forVotes);
     }
 
     private IEnumerator Animation()

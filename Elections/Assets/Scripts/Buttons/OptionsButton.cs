@@ -6,16 +6,16 @@ public class OptionsButton : GameButton
 {
     void Start()
     {
-
+        LeanTween.color(rect, new Color(1f, 1f, 1f, 0f), 0.001f);
     }
 
     public override void Show()
     {
-        LeanTween.moveLocalX(gameObject, 0, MOVE_TIME);
+        LeanTween.color(rect, new Color(1f, 1f, 1f, 0.6f), 0.7f);
     }
 
     public override void Hide()
     {
-        LeanTween.moveLocalX(gameObject, 1400, MOVE_TIME);
+        LeanTween.color(rect, new Color(1f, 1f, 1f, 0f), 0.4f);
     }
 }
