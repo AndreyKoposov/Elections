@@ -19,10 +19,6 @@ public class GameController : MonoBehaviour
         isLoad = PlayerPrefs.GetInt("isLoad");
     }
 
-    private void Start()
-    {
-    }
-
     private void FixedUpdate()
     {
         if (!isGameLoaded && isLoad == 1)
@@ -31,6 +27,10 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public static void DeleteSave()
+    {
+        storage.Delete();
+    }
 
     public static Game Game
     {

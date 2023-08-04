@@ -24,7 +24,7 @@ public class PanelController : MonoBehaviour
     private MoveableImage _fractionImage;
     [SerializeField] private GameObject _infoImage;
     private Animator _animator; 
-    private bool infoMode = true;
+    private bool infoMode = false;
 
     public static PanelController Instance
     {
@@ -44,6 +44,11 @@ public class PanelController : MonoBehaviour
         set { _performRight = value; }
     }
 
+    public bool InfoMode
+    {
+        get { return infoMode; }
+    }
+
     public ActionPerform Left
     {
         set { _performLeft = value; }
@@ -61,6 +66,7 @@ public class PanelController : MonoBehaviour
 
     public void RemoveFromCenter()
     {
+        infoMode = false;
         StartCoroutine(Animation());
     }
 
@@ -237,6 +243,7 @@ public class PanelController : MonoBehaviour
         Instance.RemoveFromCenter();
         DarkController.Instance.MakeDark();
         yield return new WaitForSeconds(0.5f);
+        GameController.DeleteSave();
         SceneManager.LoadScene(0);
     }
 }

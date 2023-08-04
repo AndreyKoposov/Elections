@@ -7,13 +7,22 @@ public class SelectableIcon : MonoBehaviour
 {
     private RectTransform rect;
     private float startTransparent;
+    private Button button;
     [SerializeField] private float _transparent;
 
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
         startTransparent = gameObject.GetComponent<Image>().color.a;
+        button = GetComponent<Button>();
     }
+
+    private void Update()
+    {
+        if(button != null)
+            button.interactable = !PanelController.Instance.InfoMode;
+    }
+
     public void Select()
     {
         LeanTween.scale(rect, new Vector2(1.1f, 1.1f), 0.2f);

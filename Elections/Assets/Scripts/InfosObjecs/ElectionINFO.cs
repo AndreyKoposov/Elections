@@ -48,7 +48,7 @@ public class ElectionINFO
                 FractionGroup.ResetVotes();
                 PanelController.Instance.graphic.gameObject.SetActive(false);
                 PanelController.Instance.HidePanelImage();
-
+                
                 GameController.SaveGame();
             };
     }

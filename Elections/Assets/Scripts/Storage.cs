@@ -48,4 +48,9 @@ public class Storage
         formatter.Serialize(file, data);
         file.Close();
     }
+
+    public void Delete()
+    {
+        File.Delete(SavePath);
+    }
 }

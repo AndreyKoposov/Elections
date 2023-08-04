@@ -145,8 +145,6 @@ public class Game
         else
         {
             _electionInfo = new ElectionINFO();
-            FractionGroup.OnInteractiveAll();
-            FractionGroup.OffInteractive(_whoWasAskeed);
         }
 
         _currentTurn++;
@@ -160,10 +158,14 @@ public class Game
         {
             FractionGroup.ResetAllMark();
         }
-        
+
+        FractionGroup.OnInteractiveAll();
+        FractionGroup.OffInteractive(_whoWasAskeed);
         FractionGroup.SetAppendValues(_valuePerTurn);
         ResourceGroup.DecreaseRandomResource(VALUE_TO_DECREASE);
         ResourceGroup.AppendValuesToResources(_valuePerTurn);
+
+        GameController.SaveGame();
     }
 
     private bool TryInitGameOverInfo()
