@@ -504,6 +504,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 531523347}
+        m_TargetAssemblyTypeName: OptionsButton, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &531523345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,10 +676,10 @@ RectTransform:
   m_Father: {fileID: 1109366005}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: -1820, y: -980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &739226782
 MonoBehaviour:
@@ -2023,10 +2035,10 @@ RectTransform:
   m_Father: {fileID: 1109366005}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 348}
-  m_SizeDelta: {x: 3000, y: 300}
+  m_AnchorMin: {x: 0.01360417, y: 0.67700005}
+  m_AnchorMax: {x: 0.98600006, y: 0.9684816}
+  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_SizeDelta: {x: 1132, y: -15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726481474
 MonoBehaviour:
@@ -2197,10 +2209,10 @@ RectTransform:
   m_Father: {fileID: 1726481473}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 1276.4202, y: 200.64}
+  m_AnchorMin: {x: 0.30233413, y: 0.28332892}
+  m_AnchorMax: {x: 0.70333314, y: 0.82000005}
+  m_AnchoredPosition: {x: -8.5, y: -15.5}
+  m_SizeDelta: {x: 3073.42, y: 39.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1845189791
 MonoBehaviour:

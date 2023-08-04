@@ -96,11 +96,14 @@ public class PanelController : MonoBehaviour
     private IEnumerator Animation()
     {
         LeanTween.moveLocalX(gameObject, 1740f, 0.3f);
-        LeanTween.moveLocalX(_fractionImage.gameObject, 1740f, 0.3f);
+
+        if(_fractionImage != null)
+         LeanTween.moveLocalX(_fractionImage.gameObject, 1740f, 0.3f);
 
         yield return new WaitForSeconds(0.3f);
 
-        _fractionImage.ResetImage();
+        if (_fractionImage != null)
+            _fractionImage.ResetImage();
     }
 
     public void SetText(string text)
