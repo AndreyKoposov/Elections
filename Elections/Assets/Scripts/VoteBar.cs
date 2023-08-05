@@ -21,7 +21,6 @@ public class VoteBar : MonoBehaviour
         get { return votes.Count; }
     }
 
-
     private void InitVoteList()
     {
         Vote[] votesArray = GetComponentsInChildren<Vote>();

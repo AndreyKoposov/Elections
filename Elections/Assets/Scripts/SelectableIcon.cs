@@ -17,6 +17,14 @@ public class SelectableIcon : MonoBehaviour
         button = GetComponent<Button>();
     }
 
+    public void SetSmaller()
+    {
+        rect.sizeDelta = new Vector2(rect.sizeDelta.x * 0.9f, rect.sizeDelta.y * 0.9f);
+        Vector2 temp = rect.localPosition;
+        temp.y -= 15;
+        rect.localPosition = temp;
+    }
+
     private void Update()
     {
         if(button != null)

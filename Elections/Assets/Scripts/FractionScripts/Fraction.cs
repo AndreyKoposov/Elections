@@ -103,6 +103,19 @@ public class Fraction : MonoBehaviour
     {
         Rate = _rate;
         voteBar.ResetAll();
+
+        if((float)Screen.width / (float)Screen.height > 2)
+        {
+            _background.SetSmaller();
+            _image.SetSmaller();
+            if (Type == Fractions.MAFIA || Type == Fractions.WARRIOR)
+            {
+                RectTransform rt = GetComponent<RectTransform>();
+                Vector2 temp = rt.localPosition;
+                temp.y += 20;
+                rt.localPosition = temp;
+            }
+        }
     }
 
     public void Select()
