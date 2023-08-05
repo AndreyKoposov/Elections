@@ -133,7 +133,7 @@ public class Fraction : MonoBehaviour
     }
     public virtual void MoveTopImageToPanel()
     {
-        LeanTween.moveLocal(TopImage.gameObject, new Vector3(0, 290, 0), 0.2f);
+        LeanTween.moveLocal(TopImage.gameObject, new Vector3(0, 250, 0), 0.2f);
         LeanTween.scale(TopImage.gameObject, new Vector3(0.6f, 0.6f, 0.6f), 0.2f);
     }
 

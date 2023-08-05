@@ -25,7 +25,7 @@ public class SelectableIcon : MonoBehaviour
 
     public void Select()
     {
-        LeanTween.scale(rect, new Vector2(1.1f, 1.1f), 0.2f);
+        LeanTween.scale(rect, new Vector2(1.07f, 1.07f), 0.2f);
         LeanTween.color(rect, new Color(1f, 1f, 1f, _transparent), 0.1f);
     }
 

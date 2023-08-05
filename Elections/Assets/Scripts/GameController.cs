@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        LeanTween.init(1600);
+        LeanTween.init(3200);
         storage = new Storage();
         game = new Game();
         isGameLoaded = false;
