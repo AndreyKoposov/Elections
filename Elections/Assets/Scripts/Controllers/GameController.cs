@@ -34,6 +34,11 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         SoundsController.SwitchSounds(settings.Sound);
+
+        if (isLoad == 0)
+        {
+            PanelController.Instance.StartTeach();
+        }
     }
 
     private void FixedUpdate()

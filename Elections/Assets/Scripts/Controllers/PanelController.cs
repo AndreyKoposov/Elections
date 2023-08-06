@@ -10,6 +10,7 @@ public class PanelController : MonoBehaviour
     private static PanelController instance;
     public ElectionsGraphic graphic;
     public TextMeshProUGUI _text;
+    private RectTransform _textRect;
     public TextMeshProUGUI _leftButtonText;
     public TextMeshProUGUI _rightButtonText;
     public TextMeshProUGUI _centerButtonText;
@@ -25,6 +26,8 @@ public class PanelController : MonoBehaviour
     [SerializeField] private GameObject _infoImage;
     private Animator _animator; 
     private bool infoMode = false;
+    private bool teachMode = false;
+    [SerializeField] private GameObject cancelButton;
 
     public static PanelController Instance
     {
@@ -37,6 +40,7 @@ public class PanelController : MonoBehaviour
         _animator = _infoImage.GetComponent<Animator>();
         HidePanelImage();
         _performCenterButton = () => { };
+        _textRect = _text.gameObject.GetComponent<RectTransform>();
     }
     
     public ActionPerform Right
@@ -148,8 +152,9 @@ public class PanelController : MonoBehaviour
 
     public void CenterClick()
     {
-        RemoveFromCenter();
-        if (!infoMode)
+        if(!teachMode)
+            RemoveFromCenter();
+        if (!infoMode && !teachMode)
         {
             EndTurn(0.3f);
         }
@@ -173,11 +178,18 @@ public class PanelController : MonoBehaviour
     public void SetInfoMode()
     {
         infoMode = true;
+        teachMode = false;
     }
 
     public void SetGameMode()
     {
         infoMode = false;
+        teachMode = false;
+    }
+
+    public void SetTeachMode()
+    {
+        teachMode = true;
     }
 
     public static void SetUpPanel(Quest quest)
@@ -265,5 +277,60 @@ public class PanelController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         GameController.DeleteSave();
         SceneManager.LoadScene(0);
+    }
+
+    public void StartTeach()
+    {
+        Instance.SetTeachMode();
+        Instance.SetDefaultMode();
+        MoveToCenter(0);
+        cancelButton.SetActive(true);
+
+        MoveTextLocalY(40);
+
+        FirstTeach();
+    }
+
+    private void FirstTeach()
+    {
+        Instance.SetText(DataContainer.StartText);
+        Instance.SetCenterButtonText("Спасибо!");
+        Instance.SetPanelImage(9);
+        Instance._performCenterButton = () => { SecondTeach(); };
+    }
+
+    private void SecondTeach()
+    {
+        Instance.SetText(DataContainer.LearnText);
+        Instance.SetCenterButtonText("Понятно");
+        Instance.SetPanelImage(0);
+        Instance.SetPanelImage(7);
+        Instance._performCenterButton = () => { ThirdTeach(); };
+    }
+
+    private void ThirdTeach()
+    {
+        Instance.SetText(DataContainer.LearnMarkText);
+        Instance.SetCenterButtonText("Приступим!");
+        Instance.SetPanelImage(0);
+        Instance.SetPanelImage(8);
+        Instance._performCenterButton = () => { EndTeach(); };
+    }
+
+    public void EndTeach()
+    {
+        Instance.SetDefaultMode();
+        RemoveFromCenter();
+        HidePanelImage();
+        cancelButton.SetActive(false);
+
+        MoveTextLocalY(-40);
+    }
+
+    private void MoveTextLocalY(float value)
+    {
+        Vector2 temp = _textRect.localPosition;
+        temp.y += value;
+        _textRect.localPosition = temp;
     }
 }

@@ -15,6 +15,7 @@ public class DataContainer
     private static List<string> colonies;
     private static string startText;
     private static string learnText;
+    private static string learnMarkText;
     private static Dictionary<Fractions, string> gameOverTexts;
     private static string PATH = Application.dataPath + "/Resources/Data/";
     private const string SYSTEMS_FILE_NAME = "systems.txt";
@@ -25,6 +26,7 @@ public class DataContainer
     private const string START_TEXT_FILE_NAME = "start_text.txt";
     private const string GAME_OVER_TEXT_FILE_NAME = "game_over.txt";
     private const string LEARN_TEXT_FILE_NAME = "learnText.txt";
+    private const string LEARN_MARK_TEXT_FILE_NAME = "learnMarkText.txt";
 
     public static void InitAllData()
     {
@@ -35,6 +37,7 @@ public class DataContainer
         colonies = GetListFromFile(COLONIES_FILE_NAME);
         startText = GetTextFromFile(START_TEXT_FILE_NAME);
         learnText = GetTextFromFile(LEARN_TEXT_FILE_NAME);
+        learnMarkText = GetTextFromFile(LEARN_MARK_TEXT_FILE_NAME);
         gameOverTexts = GetDictFromFile(GAME_OVER_TEXT_FILE_NAME);
     }
 
@@ -278,6 +281,14 @@ public class DataContainer
         get
         {
             return learnText;
+        }
+    }
+
+    public static string LearnMarkText
+    {
+        get
+        {
+            return learnMarkText;
         }
     }
 
