@@ -5,23 +5,28 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Json;
 using System.IO;
 
-public class Storage
+public class FileController : IFileWorker
 {
-    private string SavePath = Application.persistentDataPath + "/saves/GameSave.save";
-    private BinaryFormatter formatter;
+    protected string SavePath;
+    protected BinaryFormatter formatter;
 
-    public Storage()
+    public FileController()
+    {
+        InitDirectory();
+
+        InitFormatter();
+    }
+
+    protected void InitDirectory()
     {
         var directory = Application.persistentDataPath + "/saves";
         if (!Directory.Exists(directory))
         {
             Directory.CreateDirectory(directory);
         }
-
-        InitFormatter();
     }
 
-    private void InitFormatter()
+    protected void InitFormatter()
     {
         formatter = new BinaryFormatter();
     }
@@ -30,7 +35,9 @@ public class Storage
     {
         if (!File.Exists(SavePath))
         {
-            if (saveDataByDefault != null){
+            Debug.LogError("Doesnt exist");
+            if (saveDataByDefault != null)
+            {
                 Save(saveDataByDefault);
             }
             return saveDataByDefault;
@@ -38,13 +45,22 @@ public class Storage
 
         var file = File.Open(SavePath, FileMode.Open);
         object savedData = formatter.Deserialize(file);
+
+        if (savedData == null)
+        {
+            if (saveDataByDefault != null)
+            {
+                Save(saveDataByDefault);
+            }
+            return saveDataByDefault;
+        }
         file.Close();
         return savedData;
     }
 
     public void Save(object data)
     {
-        var file =  File.Create(SavePath);
+        var file = File.Create(SavePath);
         formatter.Serialize(file, data);
         file.Close();
     }

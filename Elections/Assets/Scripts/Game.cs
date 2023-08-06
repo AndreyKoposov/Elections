@@ -164,6 +164,7 @@ public class Game
         ResourceGroup.AppendValuesToResources(_valuePerTurn);
 
         GameController.SaveGame();
+        GameController.UpdateRecord(_currentTurn);
     }
 
     private bool TryInitGameOverInfo()
