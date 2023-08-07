@@ -28,6 +28,7 @@ public class PanelController : MonoBehaviour
     private bool infoMode = false;
     private bool teachMode = false;
     [SerializeField] private GameObject cancelButton;
+    [SerializeField] private GameObject voteExample;
 
     public static PanelController Instance
     {
@@ -303,23 +304,24 @@ public class PanelController : MonoBehaviour
     {
         Instance.SetText(DataContainer.LearnText);
         Instance.SetCenterButtonText("Понятно");
-        Instance.SetPanelImage(0);
         Instance.SetPanelImage(7);
         Instance._performCenterButton = () => { ThirdTeach(); };
     }
 
     private void ThirdTeach()
     {
+        MoveTextLocalY(-40);
         Instance.SetText(DataContainer.LearnMarkText);
         Instance.SetCenterButtonText("Приступим!");
-        Instance.SetPanelImage(0);
         Instance.SetPanelImage(8);
-        Instance._performCenterButton = () => { EndTeach(); };
+        Instance.voteExample.gameObject.SetActive(true);
+        Instance._performCenterButton = () => { EndTeach(); MoveTextLocalY(40); };
     }
 
     public void EndTeach()
     {
         Instance.SetDefaultMode();
+        Instance.voteExample.gameObject.SetActive(false);
         RemoveFromCenter();
         HidePanelImage();
         cancelButton.SetActive(false);
