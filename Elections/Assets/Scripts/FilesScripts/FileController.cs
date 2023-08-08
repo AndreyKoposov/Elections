@@ -35,7 +35,6 @@ public class FileController : IFileWorker
     {
         if (!File.Exists(SavePath))
         {
-            Debug.LogError("Doesnt exist");
             if (saveDataByDefault != null)
             {
                 Save(saveDataByDefault);

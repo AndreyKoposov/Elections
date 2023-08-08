@@ -29,6 +29,7 @@ public class Fraction : MonoBehaviour
     public Image Mark;
     protected bool helpLocked = true;
     protected bool exclamationMark = false;
+    private static Random random = new Random();
 
     protected int _rate;
 
@@ -190,7 +191,6 @@ public class Fraction : MonoBehaviour
 
     private Quest GetRandomQuest()
     {
-        Random random = new Random();
         TYPES rType = (TYPES)random.Next(0, 6);
         switch (rType)
         {

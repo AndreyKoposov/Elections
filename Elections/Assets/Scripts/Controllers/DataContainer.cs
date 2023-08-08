@@ -18,6 +18,7 @@ public class DataContainer
     private static string learnMarkText;
     private static Dictionary<Fractions, string> gameOverTexts;
     private static string PATH = Application.dataPath + "/Resources/Data/";
+    private static Random random = new Random();
     private const string SYSTEMS_FILE_NAME = "systems.txt";
     private const string PLANETS_FILE_NAME = "planets.txt";
     private const string NAMES_FILE_NAME = "names.txt";
@@ -226,7 +227,6 @@ public class DataContainer
     {
         get
         {
-            Random random = new Random();
             int randIndex = random.Next(0, systems.Count);
             return systems[randIndex];
         }
@@ -235,7 +235,6 @@ public class DataContainer
     {
         get
         {
-            Random random = new Random();
             int randIndex = random.Next(0, planets.Count);
             return planets[randIndex];
         }
@@ -244,7 +243,6 @@ public class DataContainer
     {
         get
         {
-            Random random = new Random();
             int randIndex = random.Next(0, colonies.Count);
             return colonies[randIndex];
         }
@@ -253,7 +251,6 @@ public class DataContainer
     {
         get
         {
-            Random random = new Random();
             int randIndex = random.Next(0, names.Count);
             return names[randIndex];
         }
@@ -262,7 +259,6 @@ public class DataContainer
     {
         get
         {
-            Random random = new Random();
             int randIndex = random.Next(0, imperies.Count);
             return imperies[randIndex];
         }
