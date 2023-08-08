@@ -8,8 +8,8 @@ public class Oligarch : Fraction
 {
     private const Fractions TYPE = Fractions.OLIGARCH;
     private const ResTypes _typeRes = ResTypes.MONEY;
-    private const string PATH = "Quests/oligarch.txt";
-    private const string PATH_TO_HELP_FILE = "Quests/oligarch_help.txt";
+    [SerializeField] private TextAsset PATH;
+    [SerializeField] private TextAsset HELP_FILE;
     public static List<QuestINFO> Quests = new List<QuestINFO>();
     public static FractionHelpINFO _info;
 
@@ -23,15 +23,15 @@ public class Oligarch : Fraction
         get { return _typeRes; }
     }
 
-    public static void InitQuests()
+    public override void InitQuests()
     {
         Quests.Clear();
         DataContainer.ReadQuestsFileToList(PATH, Quests);
     }
 
-    public static void InitHelpInfo()
+    public override void InitHelpInfo()
     {
-        _info = DataContainer.ParseFileToInfoObj(PATH_TO_HELP_FILE);
+        _info = DataContainer.ParseFileToInfoObj(HELP_FILE);
     }
 
     protected override FractionHelp GetHelp()

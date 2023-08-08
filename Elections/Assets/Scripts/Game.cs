@@ -106,15 +106,12 @@ public class Game
 
     public void InitAllData()
     {
-        DataContainer.InitAllData();
-        Oligarch.InitQuests();
-        People.InitQuests();
-        Mafia.InitQuests();
-        Warrior.InitQuests();
-        Mafia.InitHelpInfo();
-        Oligarch.InitHelpInfo();
-        People.InitHelpInfo();
-        Warrior.InitHelpInfo();
+        DataContainer.Instance.InitAllData();
+        foreach (Fraction fraction in FractionGroup.Group.Values)
+        {
+            fraction.InitHelpInfo();
+            fraction.InitQuests();
+        }
         //Logger.InitLogFile();
     }
 

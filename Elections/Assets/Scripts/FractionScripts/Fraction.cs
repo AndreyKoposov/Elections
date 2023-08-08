@@ -291,4 +291,14 @@ public class Fraction : MonoBehaviour
         exclamationMark = false;
         Mark.gameObject.SetActive(false);
     }
+
+    public virtual void InitQuests()
+    {
+        
+    }
+
+    public virtual void InitHelpInfo()
+    {
+        
+    }
 }

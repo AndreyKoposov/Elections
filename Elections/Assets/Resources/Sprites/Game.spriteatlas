@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Game
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 4406456810995124b9274ca809ce8180, type: 3}
+    - {fileID: 2800000, guid: af66300a6745cd343b6124f65ccfdb66, type: 3}
+    - {fileID: 2800000, guid: 7d14563fc948ece4f9d8735b9707eb53, type: 3}
+    - {fileID: 2800000, guid: b8d27d62f8cafa442b1b0acbeed13623, type: 3}
+    - {fileID: 2800000, guid: 09145ae9b70c2224fbebd4e39b1ab6f1, type: 3}
+    - {fileID: 2800000, guid: 8bde9c05576ecd9429955ba035d3142e, type: 3}
+    - {fileID: 2800000, guid: 96c7891a0b9d6de4aae954fdb826cfb0, type: 3}
+    - {fileID: 2800000, guid: fd44c0d671921c943a62dc39bc9d3f10, type: 3}
+    - {fileID: 2800000, guid: ccd5ed3b207dc8346b0e226a7af83ff5, type: 3}
+    - {fileID: 2800000, guid: ede436e19629c6947b481b9cb5d08340, type: 3}
+    - {fileID: 2800000, guid: 30a723ba175419c4f96788fa38c8835c, type: 3}
+    - {fileID: 2800000, guid: 0ad25b7f69592554fa76085e82f4e3b1, type: 3}
+    - {fileID: 2800000, guid: 6af75567123d4da43bc3fad10ea5dc57, type: 3}
+    - {fileID: 2800000, guid: e2e5292b080009d49a19f278cc1794ba, type: 3}
+    - {fileID: 2800000, guid: 380358eab9c51e24c8fc868d61950002, type: 3}
+    - {fileID: 2800000, guid: c7e78a8c51718a34194420ff9726260a, type: 3}
+    - {fileID: 2800000, guid: 313b3b678c164e8408e9ae125a64b09c, type: 3}
+    - {fileID: 2800000, guid: 2d184f3db1e5e0349b4e66a8af3a3d5a, type: 3}
+    - {fileID: 2800000, guid: e75772fe1143f0a499ffecc741d8798d, type: 3}
+    - {fileID: 2800000, guid: 50cba6a9ef6cd9e44ae2b0731a1826ee, type: 3}
+    - {fileID: 2800000, guid: 1e9b329bd38064745b0abaf9afcf8e77, type: 3}
+    - {fileID: 2800000, guid: 5bb889c2f6458b543ae1d832d7889bb4, type: 3}
+    - {fileID: 2800000, guid: 6c4c6fc9b2b9944498200998c8e90fdf, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ede436e19629c6947b481b9cb5d08340, type: 3}
+  - {fileID: 21300000, guid: b8d27d62f8cafa442b1b0acbeed13623, type: 3}
+  - {fileID: 21300000, guid: 5bb889c2f6458b543ae1d832d7889bb4, type: 3}
+  - {fileID: 21300000, guid: 8bde9c05576ecd9429955ba035d3142e, type: 3}
+  - {fileID: 21300000, guid: fd44c0d671921c943a62dc39bc9d3f10, type: 3}
+  - {fileID: 21300000, guid: 6af75567123d4da43bc3fad10ea5dc57, type: 3}
+  - {fileID: 21300000, guid: 313b3b678c164e8408e9ae125a64b09c, type: 3}
+  - {fileID: 21300000, guid: 4406456810995124b9274ca809ce8180, type: 3}
+  - {fileID: 21300000, guid: 50cba6a9ef6cd9e44ae2b0731a1826ee, type: 3}
+  - {fileID: 21300000, guid: 6c4c6fc9b2b9944498200998c8e90fdf, type: 3}
+  - {fileID: 21300000, guid: 09145ae9b70c2224fbebd4e39b1ab6f1, type: 3}
+  - {fileID: 21300000, guid: af66300a6745cd343b6124f65ccfdb66, type: 3}
+  - {fileID: 21300000, guid: 96c7891a0b9d6de4aae954fdb826cfb0, type: 3}
+  - {fileID: 21300000, guid: 30a723ba175419c4f96788fa38c8835c, type: 3}
+  - {fileID: 21300000, guid: 380358eab9c51e24c8fc868d61950002, type: 3}
+  - {fileID: 21300000, guid: e2e5292b080009d49a19f278cc1794ba, type: 3}
+  - {fileID: 21300000, guid: ccd5ed3b207dc8346b0e226a7af83ff5, type: 3}
+  - {fileID: 21300000, guid: 1e9b329bd38064745b0abaf9afcf8e77, type: 3}
+  - {fileID: 21300000, guid: c7e78a8c51718a34194420ff9726260a, type: 3}
+  - {fileID: 21300000, guid: 2d184f3db1e5e0349b4e66a8af3a3d5a, type: 3}
+  - {fileID: 21300000, guid: e75772fe1143f0a499ffecc741d8798d, type: 3}
+  - {fileID: 21300000, guid: 7d14563fc948ece4f9d8735b9707eb53, type: 3}
+  - {fileID: 21300000, guid: 0ad25b7f69592554fa76085e82f4e3b1, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - godfather (1)
+  - down
+  - swat
+  - flag
+  - free-icon-close-1828527
+  - missile
+  - red-flag
+  - apple
+  - spear
+  - workers
+  - employee
+  - builder
+  - free-icon-check-mark-5299048
+  - godfather
+  - output-onlinepngtools (8)
+  - money
+  - free-icon-exclamation-mark-10015176
+  - steel-beam
+  - production
+  - riot-police
+  - rounded-rectangle (1)
+  - arrow
+  - mafia
+  m_RenderDataMap: {}
+  m_Tag: Game
+  m_IsVariant: 0

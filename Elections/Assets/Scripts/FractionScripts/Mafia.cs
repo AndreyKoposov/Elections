@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 public class Mafia : Fraction
 {
     private const Fractions TYPE = Fractions.MAFIA;
     private const ResTypes _typeRes = ResTypes.METAL;
-    private const string PATH = "Quests/mafia.txt";
-    private const string PATH_TO_HELP_FILE = "Quests/mafia_help.txt";
+    [SerializeField] private TextAsset QUEST_FILE;
+    [SerializeField] private TextAsset HELP_FILE;
     public static List<QuestINFO> Quests = new List<QuestINFO>();
     public static FractionHelpINFO _info;
 
@@ -20,16 +21,23 @@ public class Mafia : Fraction
         get { return _typeRes; }
     }
 
-    public static void InitQuests()
+    public override void InitQuests()
     {
         Quests.Clear();
-        DataContainer.ReadQuestsFileToList(PATH, Quests);
+        DataContainer.ReadQuestsFileToList(QUEST_FILE, Quests);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        foreach (QuestINFO info in Quests)
+        {
+            stringBuilder.AppendLine(info._text + " " + info._type + "\n");
+        }
     }
 
-    public static void InitHelpInfo()
+    public override void InitHelpInfo()
     {
-        _info = DataContainer.ParseFileToInfoObj(PATH_TO_HELP_FILE);
+        _info = DataContainer.ParseFileToInfoObj(HELP_FILE);
     }
+
     protected override FractionHelp GetHelp()
     {
         FractionHelp help = new FractionHelp(this, _info);

@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 using Random = System.Random;
 
-public class DataContainer
+public class DataContainer : MonoBehaviour
 {
 
     private static List<string> systems;
@@ -17,109 +18,72 @@ public class DataContainer
     private static string learnText;
     private static string learnMarkText;
     private static Dictionary<Fractions, string> gameOverTexts;
-    private static string PATH = Application.dataPath + "/Resources/Data/";
     private static Random random = new Random();
-    private const string SYSTEMS_FILE_NAME = "systems.txt";
-    private const string PLANETS_FILE_NAME = "planets.txt";
-    private const string NAMES_FILE_NAME = "names.txt";
-    private const string IMPERIES_FILE_NAME = "Imperies.txt";
-    private const string COLONIES_FILE_NAME = "colonies.txt";
-    private const string START_TEXT_FILE_NAME = "start_text.txt";
-    private const string GAME_OVER_TEXT_FILE_NAME = "game_over.txt";
-    private const string LEARN_TEXT_FILE_NAME = "learnText.txt";
-    private const string LEARN_MARK_TEXT_FILE_NAME = "learnMarkText.txt";
 
-    public static void InitAllData()
+    [SerializeField] private TextAsset SYSTEMS_FILE;
+    [SerializeField] private TextAsset PLANETS_FILE;
+    [SerializeField] private TextAsset NAMES_FILE;
+    [SerializeField] private TextAsset IMPERIES_FILE;
+    [SerializeField] private TextAsset COLONIES_FILE;
+    [SerializeField] private TextAsset START_TEXT_FILE;
+    [SerializeField] private TextAsset GAME_OVER_TEXT_FILE;
+    [SerializeField] private TextAsset LEARN_TEXT_FILE;
+    [SerializeField] private TextAsset LEARN_MARK_TEXT_FILE;
+    private static DataContainer instance;
+
+    private void Awake()
     {
-        systems = GetListFromFile(SYSTEMS_FILE_NAME);
-        planets = GetListFromFile(PLANETS_FILE_NAME);
-        names = GetListFromFile(NAMES_FILE_NAME);
-        imperies = GetListFromFile(IMPERIES_FILE_NAME);
-        colonies = GetListFromFile(COLONIES_FILE_NAME);
-        startText = GetTextFromFile(START_TEXT_FILE_NAME);
-        learnText = GetTextFromFile(LEARN_TEXT_FILE_NAME);
-        learnMarkText = GetTextFromFile(LEARN_MARK_TEXT_FILE_NAME);
-        gameOverTexts = GetDictFromFile(GAME_OVER_TEXT_FILE_NAME);
+        instance = this;
     }
 
-    private static List<string> GetListFromFile(string fileName)
+    public static DataContainer Instance
     {
-        List<string> list = new List<string>();
-        try
-        {
-            StreamReader reader = new StreamReader(PATH + fileName);
-            string line = reader.ReadLine();
-            while (line != null)
-            {
-                list.Add(line);
-                line = reader.ReadLine();
-            }
-            reader.Close();
-        }
-        catch
-        {
-            return list;
-        }
+        get { return instance; }
+    }
+
+    public void InitAllData()
+    {
+        systems = GetListFromFile(SYSTEMS_FILE);
+        planets = GetListFromFile(PLANETS_FILE);
+        names = GetListFromFile(NAMES_FILE);
+        imperies = GetListFromFile(IMPERIES_FILE);
+        colonies = GetListFromFile(COLONIES_FILE);
+        startText = GetTextFromFile(START_TEXT_FILE);
+        learnText = GetTextFromFile(LEARN_TEXT_FILE);
+        learnMarkText = GetTextFromFile(LEARN_MARK_TEXT_FILE);
+        gameOverTexts = GetDictFromFile(GAME_OVER_TEXT_FILE);
+    }
+
+    private static List<string> GetListFromFile(TextAsset asset)
+    {
+        List<string> list = new List<string>(asset.text.Split('\n'));
+        
         return list;
     }
 
-    private static string GetTextFromFile(string fileName)
+    private static string GetTextFromFile(TextAsset asset)
     {
-        string text = "";
-        try
-        {
-            StreamReader reader = new StreamReader(PATH + fileName);
-            text = reader.ReadLine();
-            reader.Close();
-        }
-        catch
-        {
-            return text;
-        }
+        string text = asset.text;
+     
         return text;
     }
 
-    private static Dictionary<Fractions, string> GetDictFromFile(string fileName)
+    private static Dictionary<Fractions, string> GetDictFromFile(TextAsset asset)
     {
         Dictionary<Fractions, string> dict = new Dictionary<Fractions, string>();
-        try
+        string[] lines = asset.text.Split('\n');
+        for(int i = 0; i < lines.Length; i++)
         {
-            StreamReader reader = new StreamReader(PATH + fileName);
-            int counter = 0;
-            string line = reader.ReadLine();
-            while (line != null)
-            {
-                dict.Add((Fractions)counter, line);
-                line = reader.ReadLine();
-                counter++;
-            }
-            reader.Close();
+            dict.Add((Fractions)i, lines[i]);
         }
-        catch
-        {
-            return dict;
-        }
+       
         return dict;
     }
 
-    public static FractionHelpINFO ParseFileToInfoObj(string path)
+    public static FractionHelpINFO ParseFileToInfoObj(TextAsset asset)
     {
-        List<string> linesForConstructor = new List<string>();
+        List<string> linesForConstructor = new List<string>(asset.text.Split('\n'));
         FractionHelpINFO info = new FractionHelpINFO("", "", "");
-        try
-        {
-            StreamReader reader = new StreamReader(PATH + path);
-            string line = reader.ReadLine();
-            while (line != null)
-            {
-                linesForConstructor.Add(line);
-                line = reader.ReadLine();
-            }
-        }
-        catch (Exception e)
-        {
-            throw new Exception("Ошибка считывания файла: " + e.Message);
-        }
 
         info = CreateFractionHelpINFO(linesForConstructor);
         return info;
@@ -159,30 +123,22 @@ public class DataContainer
         return info;
     }
 
-    public static void ReadQuestsFileToList(string path, List<QuestINFO> quests)
+    public static void ReadQuestsFileToList(TextAsset asset, List<QuestINFO> quests)
     {
         List<string> linesForConstructor = new List<string>();
-        try
+        string[] lines = asset.text.Split('\n');
+        for (int i = 0; i < lines.Length; i++)
         {
-            StreamReader reader = new StreamReader(PATH + path);
-            string line;
-            while ((line = reader.ReadLine()) != null)
+            if (lines[i].Contains("END"))
             {
-                if (line.Equals("END"))
-                {
-                    QuestINFO info = CreateQuestINFO(linesForConstructor);
-                    quests.Add(info);
-                    linesForConstructor.Clear();
-                }
-                else
-                {
-                    linesForConstructor.Add(line);
-                }
+                QuestINFO info = CreateQuestINFO(linesForConstructor);
+                quests.Add(info);
+                linesForConstructor.Clear();
             }
-        }
-        catch (Exception e)
-        {
-            Debug.Log("Ошибка считывания файла: " + e.Message);
+            else
+            {
+                linesForConstructor.Add(lines[i]);
+            }
         }
     }
 
@@ -210,7 +166,7 @@ public class DataContainer
 
     private static bool isNoneLine(string line)
     {
-        return line.Equals("NONE");
+        return line.Contains("NONE");
     }
 
     private static void ParseFractionsLineToList(string line, List<Fractions> list)
@@ -228,7 +184,7 @@ public class DataContainer
         get
         {
             int randIndex = random.Next(0, systems.Count);
-            return systems[randIndex];
+            return RemoveCRLF(systems[randIndex]);
         }
     }
     public static string RandomPlanet
@@ -236,7 +192,7 @@ public class DataContainer
         get
         {
             int randIndex = random.Next(0, planets.Count);
-            return planets[randIndex];
+            return RemoveCRLF(planets[randIndex]);
         }
     }
     public static string RandomColonie
@@ -244,7 +200,7 @@ public class DataContainer
         get
         {
             int randIndex = random.Next(0, colonies.Count);
-            return colonies[randIndex];
+            return RemoveCRLF(colonies[randIndex]);
         }
     }
     public static string RandomName
@@ -252,7 +208,7 @@ public class DataContainer
         get
         {
             int randIndex = random.Next(0, names.Count);
-            return names[randIndex];
+            return RemoveCRLF(names[randIndex]);
         }
     }
     public static string RandomImperia
@@ -260,8 +216,13 @@ public class DataContainer
         get
         {
             int randIndex = random.Next(0, imperies.Count);
-            return imperies[randIndex];
+            return RemoveCRLF(imperies[randIndex]);
         }
+    }
+
+    private static string RemoveCRLF(string text)
+    {
+        return text.Replace("\r", "").Replace("\n", "");
     }
 
     public static string StartText

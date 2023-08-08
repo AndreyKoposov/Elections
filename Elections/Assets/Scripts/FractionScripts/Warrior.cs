@@ -6,8 +6,8 @@ public class Warrior : Fraction
 {
     private const Fractions TYPE = Fractions.WARRIOR;
     private const ResTypes _typeRes = ResTypes.POWER;
-    private const string PATH = "Quests/warrior.txt";
-    private const string PATH_TO_HELP_FILE = "Quests/warrior_help.txt";
+    [SerializeField] private TextAsset PATH;
+    [SerializeField] private TextAsset HELP_FILE;
     public static List<QuestINFO> Quests = new List<QuestINFO>();
     public static FractionHelpINFO _info;
 
@@ -22,15 +22,15 @@ public class Warrior : Fraction
         get { return _typeRes; }
     }
 
-    public static void InitQuests()
+    public override void InitQuests()
     {
         Quests.Clear();
         DataContainer.ReadQuestsFileToList(PATH, Quests);
     }
 
-    public static void InitHelpInfo()
+    public override void InitHelpInfo()
     {
-        _info = DataContainer.ParseFileToInfoObj(PATH_TO_HELP_FILE);
+        _info = DataContainer.ParseFileToInfoObj(HELP_FILE);
     }
     protected override FractionHelp GetHelp()
     {

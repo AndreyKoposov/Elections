@@ -1320,6 +1320,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startRate: 50
   rateBar: {fileID: 387185022}
+--- !u!1 &116375922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 116375924}
+  - component: {fileID: 116375923}
+  m_Layer: 0
+  m_Name: DataContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &116375923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116375922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3337e531a930c3348bcfd14eede689f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SYSTEMS_FILE: {fileID: 4900000, guid: 98ff63ce15b02a14ab75d8958e0a4867, type: 3}
+  PLANETS_FILE: {fileID: 4900000, guid: bdeb484b90c29b34397e4e12d176c929, type: 3}
+  NAMES_FILE: {fileID: 4900000, guid: 7cec124af15d59645a1f9ef0dce23bca, type: 3}
+  IMPERIES_FILE: {fileID: 4900000, guid: 9e1a782c898c278468d9b3d15901858b, type: 3}
+  COLONIES_FILE: {fileID: 4900000, guid: 63cd78d46e4734049a5a0d4c6b917736, type: 3}
+  START_TEXT_FILE: {fileID: 4900000, guid: ea0f49b30ce616f4eb1739f56fbc3ea4, type: 3}
+  GAME_OVER_TEXT_FILE: {fileID: 4900000, guid: 035d252af86c0be4eba63dfd10c9d8a4, type: 3}
+  LEARN_TEXT_FILE: {fileID: 4900000, guid: d9b575f74da4b6e4cb0efb191db22a27, type: 3}
+  LEARN_MARK_TEXT_FILE: {fileID: 4900000, guid: 68e458e81374c3341b385b99d65c32d2, type: 3}
+--- !u!4 &116375924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116375922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.452858}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &132724102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,6 +2752,8 @@ MonoBehaviour:
   redFlag: {fileID: 1958852583}
   greenFlag: {fileID: 979866583}
   Mark: {fileID: 1961165238}
+  QUEST_FILE: {fileID: 4900000, guid: 2f1f72db25a7a714eb80c69281ea558d, type: 3}
+  HELP_FILE: {fileID: 4900000, guid: ca25eda818045494a9dee9a1492a76e5, type: 3}
 --- !u!1 &300731012
 GameObject:
   m_ObjectHideFlags: 0
@@ -6963,6 +7017,8 @@ MonoBehaviour:
   redFlag: {fileID: 2074965705}
   greenFlag: {fileID: 1356395515}
   Mark: {fileID: 769297628}
+  PATH: {fileID: 4900000, guid: 7578482a72f5d2149acecb01257e8809, type: 3}
+  HELP_FILE: {fileID: 4900000, guid: b682bcb7685106749bf7fda8092b8fa3, type: 3}
 --- !u!1 &682922852
 GameObject:
   m_ObjectHideFlags: 0
@@ -8720,6 +8776,8 @@ MonoBehaviour:
   redFlag: {fileID: 370208281}
   greenFlag: {fileID: 1859536201}
   Mark: {fileID: 723503097}
+  PATH: {fileID: 4900000, guid: 5add057182fb05d4f904402b3b95b7f0, type: 3}
+  HELP_FILE: {fileID: 4900000, guid: de6731603418e9e42b6b2e565797c99d, type: 3}
 --- !u!1 &881536049
 GameObject:
   m_ObjectHideFlags: 0
@@ -9866,7 +9924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.18735418, y: 0.037}
   m_AnchorMax: {x: 0.97400004, y: 0.9545927}
-  m_AnchoredPosition: {x: 1585, y: -23}
+  m_AnchoredPosition: {x: 1585, y: -23.00003}
   m_SizeDelta: {x: -1410, y: -693}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986443657
@@ -16468,6 +16526,8 @@ MonoBehaviour:
   redFlag: {fileID: 608041581}
   greenFlag: {fileID: 820404071}
   Mark: {fileID: 1499937975}
+  PATH: {fileID: 4900000, guid: 570bcc9f3cfc14a4dbc2c94abb2ef0fc, type: 3}
+  HELP_FILE: {fileID: 4900000, guid: 4b554ae7a70c3cb40abde30a0aa586bc, type: 3}
 --- !u!1 &1713622466
 GameObject:
   m_ObjectHideFlags: 0
