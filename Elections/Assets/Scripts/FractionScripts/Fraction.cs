@@ -191,7 +191,7 @@ public class Fraction : MonoBehaviour
 
     private Quest GetRandomQuest()
     {
-        TYPES rType = (TYPES)random.Next(0, 6);
+        TYPES rType = (TYPES)random.Next(0, 8);
         switch (rType)
         {
             case TYPES.TYPE1:
@@ -206,6 +206,10 @@ public class Fraction : MonoBehaviour
                 return new QType5(Type);
             case TYPES.TYPE6:
                 return new QType6(Type);
+            case TYPES.TYPE7:
+                return new QType7(Type);
+            case TYPES.TYPE8:
+                return new QType8(Type);
             default:
                 return new QType1(Type);
         }

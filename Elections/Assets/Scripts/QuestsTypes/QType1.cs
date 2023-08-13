@@ -13,8 +13,8 @@ public class QType1 : Quest
     public QType1(Fractions fraction) : base(fraction)
     {
         Random random = new Random();
-        _rateDown = random.Next(6, 12);
-        _rateUp = random.Next(6, 11);
+        _rateDown = random.Next(9, 15);
+        _rateUp = random.Next(8, 14);
         _info = GetQuestInfoByFraction(_whichQuest, TYPE);
         _anotherFraction = _info._fractions.First();
 

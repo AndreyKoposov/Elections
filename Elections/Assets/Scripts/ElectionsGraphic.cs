@@ -17,4 +17,10 @@ public class ElectionsGraphic : MonoBehaviour
     {
         green.SetVote(vote);
     }
+
+    public void ResetBoth()
+    {
+        green.SetVote(0);
+        red.SetVote(0);
+    }
 }

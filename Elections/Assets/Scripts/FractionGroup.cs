@@ -87,7 +87,7 @@ public class FractionGroup : MonoBehaviour
     {
         if (fraction.Rate >= 75)
         {
-            valuePerTurn[fraction.TypeRes] = 3;
+            valuePerTurn[fraction.TypeRes] = 4;
             return;
         }
         if (fraction.Rate <= 25)

@@ -27,6 +27,7 @@ public class PanelController : MonoBehaviour
     private Animator _animator; 
     private bool infoMode = false;
     private bool teachMode = false;
+    private bool electionMode = false;
     [SerializeField] private GameObject cancelButton;
     [SerializeField] private GameObject voteExample;
 
@@ -155,9 +156,13 @@ public class PanelController : MonoBehaviour
     {
         if(!teachMode)
             RemoveFromCenter();
-        if (!infoMode && !teachMode)
+        if (!infoMode && !teachMode && !electionMode)
         {
             EndTurn(0.3f);
+        }
+        if (electionMode)
+        {
+            graphic.ResetBoth();
         }
         _performCenterButton();
     }
@@ -180,17 +185,28 @@ public class PanelController : MonoBehaviour
     {
         infoMode = true;
         teachMode = false;
+        electionMode = false;
     }
 
     public void SetGameMode()
     {
         infoMode = false;
         teachMode = false;
+        electionMode = false;
     }
 
     public void SetTeachMode()
     {
+        infoMode = false;
+        electionMode = false;
         teachMode = true;
+    }
+
+    public void SetElectionMode()
+    {
+        infoMode = true;
+        teachMode = false;
+        electionMode = true;
     }
 
     public static void SetUpPanel(Quest quest)
@@ -226,8 +242,8 @@ public class PanelController : MonoBehaviour
 
     public static void SetUpPanel(ElectionINFO election)
     {
+        Instance.SetElectionMode();
         Instance.graphic.gameObject.SetActive(true);
-        Instance.SetInfoMode();
         Instance.SetText(election._text);
         Instance.SetCenterButtonText(election._answerText);
         Instance.SetPanelImage(election._win);
